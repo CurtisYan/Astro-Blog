@@ -6,8 +6,20 @@
     { "label": "技术", "href": "/tech.html" },
     { "label": "关于", "href": "/page/about.html" }
   ],
+  "sections": {
+    "life": {
+      "title": "生活",
+      "subtitle": "",
+      "filter": "life"
+    },
+    "tech": {
+      "title": "技术",
+      "subtitle": "",
+      "filter": "tech"
+    }
+  },
   "archiveTitle": "归档",
   "archiveSubtitle": "",
-  "footerText": "© 2026 Curtis's Blog",
-  "footerCredit": "Theme by Anders Norén"
+  "footerTextHtml": "© 2026 <a href=\"https://blog.curvio.org\" target=\"_blank\" rel=\"noopener\">Curtis's Blog</a>",
+  "footerCreditHtml": "Theme by <a href=\"https://andersnoren.se/\" target=\"_blank\" rel=\"noopener\">Anders Norén</a>"
 }

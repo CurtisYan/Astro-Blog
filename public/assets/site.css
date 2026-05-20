@@ -169,7 +169,7 @@ img {
   border-top: 0.5px solid var(--secondary);
   overflow: visible;
   position: relative;
-  margin: var(--space-80) 0;
+  margin: var(--space-40) 0;
 }
 
 main .davis-separator {

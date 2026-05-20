@@ -242,7 +242,11 @@ function applyConfig(config) {
     brandTitle.textContent = config.siteTitle;
   }
   if (brandTagline && typeof config.tagline === "string") {
-    brandTagline.textContent = config.tagline;
+    if (config.tagline) {
+      brandTagline.textContent = config.tagline;
+    } else {
+      brandTagline.remove();
+    }
   }
 
   const nav = document.querySelector("[data-primary-nav]");
@@ -254,22 +258,46 @@ function applyConfig(config) {
 
   const archiveHeader = document.querySelector(".archive-header");
   if (archiveHeader) {
+    const headerMode = archiveHeader.dataset.archiveTitle || "";
     const titleNode = archiveHeader.querySelector("h2");
     const subtitleNode = archiveHeader.querySelector("p");
 
-    if (titleNode && config.archiveTitle) {
-      titleNode.textContent = config.archiveTitle;
+    const sectionKey = archiveHeader.dataset.section || "";
+    const sectionConfig = config.sections && sectionKey ? config.sections[sectionKey] : null;
+
+    if (sectionConfig && headerMode === "section") {
+      if (titleNode && sectionConfig.title) {
+        titleNode.textContent = sectionConfig.title;
+      }
+
+      if (typeof sectionConfig.subtitle === "string") {
+        if (sectionConfig.subtitle && subtitleNode) {
+          subtitleNode.textContent = sectionConfig.subtitle;
+        } else if (sectionConfig.subtitle && !subtitleNode) {
+          const p = document.createElement("p");
+          p.textContent = sectionConfig.subtitle;
+          archiveHeader.appendChild(p);
+        } else if (!sectionConfig.subtitle && subtitleNode) {
+          subtitleNode.remove();
+        }
+      }
     }
 
-    if (typeof config.archiveSubtitle === "string") {
-      if (config.archiveSubtitle && subtitleNode) {
-        subtitleNode.textContent = config.archiveSubtitle;
-      } else if (config.archiveSubtitle && !subtitleNode) {
-        const p = document.createElement("p");
-        p.textContent = config.archiveSubtitle;
-        archiveHeader.appendChild(p);
-      } else if (!config.archiveSubtitle && subtitleNode) {
-        subtitleNode.remove();
+    if (headerMode === "config") {
+      if (titleNode && config.archiveTitle) {
+        titleNode.textContent = config.archiveTitle;
+      }
+
+      if (typeof config.archiveSubtitle === "string") {
+        if (config.archiveSubtitle && subtitleNode) {
+          subtitleNode.textContent = config.archiveSubtitle;
+        } else if (config.archiveSubtitle && !subtitleNode) {
+          const p = document.createElement("p");
+          p.textContent = config.archiveSubtitle;
+          archiveHeader.appendChild(p);
+        } else if (!config.archiveSubtitle && subtitleNode) {
+          subtitleNode.remove();
+        }
       }
     }
   }
@@ -277,8 +305,12 @@ function applyConfig(config) {
   const footer = document.querySelector(".site-footer");
   if (footer) {
     const footerTextNode = footer.querySelector("p");
-    if (footerTextNode && config.footerText) {
-      footerTextNode.textContent = config.footerText;
+    if (footerTextNode && (config.footerTextHtml || config.footerText)) {
+      if (config.footerTextHtml) {
+        footerTextNode.innerHTML = config.footerTextHtml;
+      } else if (config.footerText) {
+        footerTextNode.textContent = config.footerText;
+      }
     }
 
     const creditText = typeof config.footerCredit === "string" ? config.footerCredit : "";
@@ -332,13 +364,22 @@ function matchSearch(post, term) {
   const pageNumber = Number(listNode.dataset.page || "1");
   const filterType = listNode.dataset.filterType || "";
   const filterValue = normalizeText(listNode.dataset.filterValue);
-  const sectionFilter = normalizeText(listNode.dataset.section);
+  let sectionFilter = normalizeText(listNode.dataset.section);
   const groupBy = listNode.dataset.groupBy || "";
   const basePath = listNode.dataset.basePath || "/";
 
   try {
     const posts = await loadPosts();
     let filtered = posts;
+
+    if (sectionFilter && config && config.sections && config.sections[sectionFilter] && config.sections[sectionFilter].filter) {
+      const configured = config.sections[sectionFilter].filter;
+      if (Array.isArray(configured)) {
+        filtered = filtered.filter((post) => configured.map(normalizeText).includes(normalizeText(post.section)));
+      } else {
+        sectionFilter = normalizeText(configured);
+      }
+    }
 
     if (sectionFilter) {
       filtered = filtered.filter((post) => normalizeText(post.section) === sectionFilter);
