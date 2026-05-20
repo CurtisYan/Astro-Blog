@@ -1,6 +1,6 @@
 {
-  "siteTitle": "Davis Static",
-  "tagline": "A clean and lightweight static blog",
+  "siteTitle": "Curtis's Blog",
+  "tagline": "",
   "nav": [
     { "label": "生活", "href": "/life.html" },
     { "label": "技术", "href": "/tech.html" },
