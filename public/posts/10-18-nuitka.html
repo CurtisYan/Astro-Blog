@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>起因</title>
+  <link rel="stylesheet" href="/assets/site.css">
+  </head>
+<body>
+  <div class="site-shell">
+    <header class="site-header stack">
+      <div class="nav-shell">
+        <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">Menu</button>
+        <nav class="nav" id="primary-nav" data-primary-nav aria-label="Primary">
+          <a href="/life.html">生活</a>
+          <a href="/tech.html">技术</a>
+          <a href="/page/about.html">关于</a>
+        </nav>
+      </div>
+      <div class="brand">
+        <h1><a href="/">Davis Static</a></h1>
+        <p>A clean and lightweight static blog</p>
+      </div>
+      <div class="separator-wrap">
+        <hr class="davis-separator">
+      </div>
+    </header>
+    <main class="article">
+      <h1>起因</h1>
+      <hr>
+<h2 id="layout-post-title-🧩-nuitka-打包避坑记录（nuitka-packaging-pitfalls）-category-学习笔记-tags-nuitka-keywords-nuitka-description--thumbnail-false">layout: post
+title: 🧩 Nuitka 打包避坑记录（Nuitka Packaging Pitfalls）
+category: 学习笔记
+tags: Nuitka
+keywords: Nuitka
+description: 
+thumbnail: false</h2>
+<h1 id="起因">起因</h1>
+<p>最近做了个一键更改网络适配器的程序，然后在将程序打包的过程中我遇到了一些问题，记录下来方便以后参考
+项目地址：<a href="https://github.com/CurtisYan/NetAdapterTool">https://github.com/CurtisYan/NetAdapterTool</a>
+<img src="https://img.curvio.org/blog/img/no_important/202510181821003.png" alt="photo"></p>
+<h2 id="一、版本问题：虚拟环境中的-nuitka-未升级">一、版本问题：虚拟环境中的 Nuitka 未升级</h2>
+<p>在我第一次使用 Nuitka 打包时，<strong>项目运行在虚拟环境（virtual environment）中</strong>，而我使用以下命令升级了 Nuitka：</p>
+<pre><code class="language-bash">pip install --upgrade nuitka
+</code></pre>
+<p>然而，这条命令实际上<strong>只升级了全局环境（global environment）<strong>中的 Nuitka，而</strong>虚拟环境里的 Nuitka 并没有被升级</strong>。
+结果就是：第一次打包失败后，我以为升级成功，第二次打包仍然失败。</p>
+<blockquote>
+<p>✅ <strong>经验教训：</strong></p>
+<ul>
+<li><p>如果你在虚拟环境中工作，记得使用该虚拟环境的 <code>pip</code>。
+例如：</p>
+<pre><code class="language-bash">path\to\venv\Scripts\pip install --upgrade nuitka
+</code></pre>
+</li>
+<li><p>或者在虚拟环境激活后再执行升级命令。</p>
+</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="二、upx-压缩路径引发-powershell-调用异常">二、UPX 压缩路径引发 PowerShell 调用异常</h2>
+<p>我想进一步使用 <strong>UPX（Ultimate Packer for eXecutables）</strong> 来压缩打包体积，于是下载安装了 UPX。
+最初根据网上教程，我<strong>直接修改了系统环境变量（Environment Variables）中的 PATH 值</strong>，将其更改为 UPX 的路径：
+例如：</p>
+<pre><code>D:\upx\upx.exe
+</code></pre>
+<p>结果出现了严重问题：
+我的项目在运行时需要调用 <strong>PowerShell（Windows PowerShell）</strong>，而修改 PATH 后导致 PowerShell 无法被正常调用。</p>
+<p>起初我排查了两遍所有项目代码，完全没发现问题。后来才意识到是 <strong>系统 PATH 配置被破坏</strong>。
+我尝试使用多种命令修复无果，最后在 <strong>火绒（Huorong）安全软件 → 系统修复 → 一键修复系统 PATH</strong> 功能中才彻底恢复正常。</p>
+<img src="https://img.curvio.org/blog/img/no_important/202510161014116.png" style="zoom:80%;" />
+
+<blockquote>
+<p>⚠️ <strong>关键提醒：</strong></p>
+<ul>
+<li>不要直接修改 PATH 的值！</li>
+<li>应该<strong>双击进入 PATH，新增 UPX 路径条目</strong>，而不是覆盖原值。</li>
+<li>这样不会影响 PowerShell 或其他系统命令。</li>
+</ul>
+</blockquote>
+<img src="https://img.curvio.org/blog/img/no_important/202510161019746.png" style="zoom:80%;" />
+
+<hr>
+<h2 id="三、我的-nuitka-打包命令详解">三、我的 Nuitka 打包命令详解</h2>
+<p>以下是我最终稳定可用的打包命令：</p>
+<pre><code class="language-bash">nuitka ^
+  --standalone --onefile ^
+  --enable-plugin=pyqt5 ^
+  --include-qt-plugins=platforms,imageformats,styles ^
+  --python-flag=-OO ^
+  --nofollow-import-to=PyQt5.QtQml,PyQt5.QtQuick,PyQt5.QtWebEngineWidgets,PyQt5.QtWebKit,PyQt5.QtMultimedia,PyQt5.QtNetwork,PyQt5.QtSql,PyQt5.QtPrintSupport,tkinter,matplotlib,numpy,pandas ^
+  --enable-plugin=upx ^
+  --upx-binary=&quot;D:\upx\upx.exe&quot; ^
+  --onefile-no-compression ^
+  --windows-uac-admin ^
+  --windows-console-mode=disable ^
+  --windows-icon-from-ico=img/NA.ico ^
+  --include-data-dir=img=img ^
+  --product-name=&quot;NetAdapterTool&quot; ^
+  --file-version=1.0.0 ^
+  --product-version=1.0.0 ^
+  --output-filename=&quot;网络适配器修改器.exe&quot; ^
+  gui.py
+</code></pre>
+<h3 id="🔍-参数说明">🔍 参数说明</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--standalone</code> / <code>--onefile</code></td>
+<td>生成独立可执行文件（standalone executable）。</td>
+</tr>
+<tr>
+<td><code>--enable-plugin=pyqt5</code></td>
+<td>启用 PyQt5 插件支持。</td>
+</tr>
+<tr>
+<td><code>--include-qt-plugins=platforms,imageformats,styles</code></td>
+<td>仅包含平台、图像格式、样式插件，满足 <code>QIcon/QPixmap(jpg/ico)</code>、窗口显示需求。</td>
+</tr>
+<tr>
+<td><code>--python-flag=-OO</code></td>
+<td>删除 <code>docstring</code> 和 <code>assert</code>，减小体积但不影响功能。</td>
+</tr>
+<tr>
+<td><code>--nofollow-import-to=...</code></td>
+<td>避免将未使用的 PyQt 模块、numpy、pandas 等大依赖错误打包。</td>
+</tr>
+<tr>
+<td><code>--enable-plugin=upx</code></td>
+<td>启用 UPX 压缩插件。</td>
+</tr>
+<tr>
+<td><code>--upx-binary=&quot;D:\upx\upx.exe&quot;</code></td>
+<td>指定 UPX 可执行文件路径。</td>
+</tr>
+<tr>
+<td><code>--onefile-no-compression</code></td>
+<td>单文件打包但不额外压缩，启动速度更快。</td>
+</tr>
+<tr>
+<td><code>--windows-uac-admin</code></td>
+<td>生成需要管理员权限的可执行文件。</td>
+</tr>
+<tr>
+<td><code>--windows-console-mode=disable</code></td>
+<td>关闭命令行窗口。</td>
+</tr>
+<tr>
+<td><code>--windows-icon-from-ico</code></td>
+<td>指定程序图标。</td>
+</tr>
+<tr>
+<td><code>--include-data-dir</code></td>
+<td>打包资源目录（images、icons 等）。</td>
+</tr>
+<tr>
+<td><code>--product-name</code> / <code>--file-version</code> / <code>--product-version</code></td>
+<td>设置程序元信息。</td>
+</tr>
+<tr>
+<td><code>--output-filename</code></td>
+<td>自定义生成的 <code>.exe</code> 文件名。</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="四、总结与感想">四、总结与感想</h2>
+<ol>
+<li><strong>虚拟环境（Virtualenv）问题</strong> 是新手最容易忽略的点。
+在虚拟环境中安装或升级依赖时，一定要确保执行的是该环境下的 <code>pip</code>。</li>
+<li><strong>UPX 环境变量（Environment Variable）</strong> 修改不当会导致系统命令失效。
+正确做法是添加而非替换 PATH。</li>
+<li><strong>Nuitka 参数</strong> 虽多，但理解每一项后其实十分强大，可以媲美 PyInstaller，同时体积更小、性能更优。</li>
+</ol>
+<hr>
+<h2 id="五、个人感受">五、个人感受</h2>
+<p>我这次用 <strong>GPT-5（Thinking 模式）</strong> 帮我优化 Nuitka 指令，体验非常好。
+它的思考逻辑远超 Claude 4 —— <strong>思维全面、分析深入、参数解释到位</strong>。
+唯一的小缺点是：<strong>速度有点慢</strong>，但慢工出细活，这种质量值得等待。</p>
+<p><img src="https://img.curvio.org/blog/img/no_important/202510181824923.png" alt="gpt5"></p>
+
+      <p class="post-meta">2025-10-18</p>
+      
+    </main>
+    <footer class="site-footer stack">
+      <div class="separator-wrap">
+        <hr class="davis-separator">
+      </div>
+      <p>© <span data-year></span></p>
+      <p class="credits">Theme by <a href="https://andersnoren.se" target="_blank" rel="noopener">Anders Norén</a></p>
+    </footer>
+  </div>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

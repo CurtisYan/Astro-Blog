@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/</loc></url>
+  <url><loc>https://example.com/life.html</loc></url>
+  <url><loc>https://example.com/tech.html</loc></url>
+  <url><loc>https://example.com/archive.html</loc></url>
+  <url><loc>https://example.com/page/about.html</loc></url>
+  <url><loc>https://example.com/search.html</loc></url>
+  <url><loc>https://example.com/posts/welcome-to-davis-static.html</loc></url>
+  <url><loc>https://example.com/posts/about-fast-blog-setup.html</loc></url>
+  <url><loc>https://example.com/posts/life-in-the-city.html</loc></url>
+  <url><loc>https://example.com/posts/tech-notes-for-pages.html</loc></url>
+  <url><loc>https://example.com/tags/static.html</loc></url>
+  <url><loc>https://example.com/tags/cloudflare.html</loc></url>
+  <url><loc>https://example.com/tags/performance.html</loc></url>
+  <url><loc>https://example.com/tags/speed.html</loc></url>
+  <url><loc>https://example.com/tags/blog.html</loc></url>
+  <url><loc>https://example.com/tags/life.html</loc></url>
+  <url><loc>https://example.com/tags/notes.html</loc></url>
+  <url><loc>https://example.com/tags/pages.html</loc></url>
+  <url><loc>https://example.com/tags/setup.html</loc></url>
+</urlset>

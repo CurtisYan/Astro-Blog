@@ -1,0 +1,317 @@
+[
+  {
+    "slug": "about-fast-blog-setup",
+    "title": "about-fast-blog-setup",
+    "date": "2026-05-20",
+    "excerpt": "<!doctype html>\r <html lang=\"en\">\r <head>\r   <meta charset=\"utf-8\">\r   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r   <title>About a Fast Blog Setup</title>\r   <link rel=\"styl",
+    "section": "tech",
+    "tags": []
+  },
+  {
+    "slug": "about",
+    "title": "Welcome，在这里你可以初步认识我",
+    "date": "2026-05-20",
+    "excerpt": "<a class=\"btn aright \" href=\"/en/about\"><i class=\"fa-regular fa-language \"></i></a>",
+    "section": "tech",
+    "tags": []
+  },
+  {
+    "slug": "particular-drift",
+    "title": "粒子流动的艺术：Particular Drift 初体验",
+    "date": "2026-05-20",
+    "excerpt": "> 最近发现了一个有趣的开源工具 [Particular Drift](https://collidingscopes.github.io/particular-drift/)，它能将普通图片转化为流动的粒子动画，效果相当惊艳。",
+    "section": "life",
+    "tags": [
+      "前端"
+    ]
+  },
+  {
+    "slug": "life-in-the-city",
+    "title": "life-in-the-city",
+    "date": "2026-05-20",
+    "excerpt": "<!doctype html>\r <html lang=\"en\">\r <head>\r   <meta charset=\"utf-8\">\r   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r   <title>Life in the City</title>\r   <link rel=\"stylesheet\"",
+    "section": "tech",
+    "tags": []
+  },
+  {
+    "slug": "ip",
+    "title": "机场套餐，开出多个指纹浏览器环境的教程",
+    "date": "2026-05-20",
+    "excerpt": "> 大家在日常使用代理软件，是否也曾为软件协议与机场协议不一致的问题头痛？本期教大家把机场节点或者自建的任意协议节点转换为本地的 socks节点，方便使用。",
+    "section": "tech",
+    "tags": [
+      "撸毛;",
+      "Ip"
+    ]
+  },
+  {
+    "slug": "winautoshutdown",
+    "title": "2025.4.20 WinAutoShutdown：你的智能Windows关机助手",
+    "date": "2026-05-20",
+    "excerpt": "> 最近完成了一个小项目，忍不住想和大家分享一下——[**WinAutoShutdown**](https://github.com/CurtisYan/winautoshutdown)，一个专为Windows用户设计的自动关机工具。它不仅实用，还特别注重用户体验，界面简洁美观，用起来真的很顺手！",
+    "section": "tech",
+    "tags": [
+      "工具"
+    ]
+  },
+  {
+    "slug": "tech-notes-for-pages",
+    "title": "tech-notes-for-pages",
+    "date": "2026-05-20",
+    "excerpt": "<!doctype html>\r <html lang=\"en\">\r <head>\r   <meta charset=\"utf-8\">\r   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r   <title>Tech Notes for Pages</title>\r   <link rel=\"stylesh",
+    "section": "tech",
+    "tags": []
+  },
+  {
+    "slug": "welcome-to-davis-static",
+    "title": "welcome-to-davis-static",
+    "date": "2026-05-20",
+    "excerpt": "<!doctype html>\r <html lang=\"en\">\r <head>\r   <meta charset=\"utf-8\">\r   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r   <title>Welcome to Davis Static</title>\r   <link rel=\"styl",
+    "section": "tech",
+    "tags": []
+  },
+  {
+    "slug": "macos-set-ctrl-c-v",
+    "title": "在MacOS中设置Ctrl+C/V进行复制/粘贴",
+    "date": "2026-03-30",
+    "excerpt": ">   初用MAC，很多习惯不同，虽然适应并不难。但因为键盘键位的问题，原本Ctrl+Z/X/C/V/A的时候可以用小指按Ctrl，字母键可以使用无名指中指食指。但Command键的位置就不行了，只能用拇指，顺带着字母键也只能用食指了，还各种扭曲难受。 &nbsp;",
+    "section": "tech",
+    "tags": [
+      "技巧"
+    ]
+  },
+  {
+    "slug": "boll-trading-guide",
+    "title": "2025.3.11 BOLL布林带使用指南",
+    "date": "2026-03-30",
+    "excerpt": "# 加密货币交易指南：布林带(BOLL)策略与指标组合",
+    "section": "tech",
+    "tags": [
+      "BTC",
+      "币圈"
+    ]
+  },
+  {
+    "slug": "ema-trading-guide",
+    "title": "2025.3.11 EMA指数移动平均线使用指南",
+    "date": "2026-03-30",
+    "excerpt": "# 加密货币交易指南：EMA策略与指标组合",
+    "section": "tech",
+    "tags": [
+      "BTC",
+      "币圈"
+    ]
+  },
+  {
+    "slug": "nuitka",
+    "title": "起因",
+    "date": "2025-10-18",
+    "excerpt": "---\r layout: post\r title: 🧩 Nuitka 打包避坑记录（Nuitka Packaging Pitfalls）\r category: 学习笔记\r tags: Nuitka\r keywords: Nuitka\r description: \r thumbnail: false\r ---\r # 起因\r 最近做了个一键更改网络适配器的程序，然后在将程序打包的过程中我遇到了一些问",
+    "section": "tech",
+    "tags": []
+  },
+  {
+    "slug": "btcdiary05",
+    "title": "2025.3.6交易日记05：AAVE：一波不容错过的行情",
+    "date": "2025-03-06",
+    "excerpt": ">最近 AAVE 的走势让人眼前一亮，今天和大家好好聊聊这个标的。",
+    "section": "life",
+    "tags": [
+      "BTC",
+      "币圈",
+      "牛市"
+    ]
+  },
+  {
+    "slug": "btcdiary04",
+    "title": "2025.3.2交易日记04：比特币与以太坊的市场观察",
+    "date": "2025-03-02",
+    "excerpt": "## 比特币牛回形态分析",
+    "section": "life",
+    "tags": [
+      "BTC;",
+      "币圈",
+      ";",
+      "熊市"
+    ]
+  },
+  {
+    "slug": "btcdiary03",
+    "title": "2024.12.10交易员日记03-两次失败！！！",
+    "date": "2024-12-10",
+    "excerpt": "# 关于最近的复盘",
+    "section": "life",
+    "tags": [
+      "BTC;",
+      "币圈",
+      ";",
+      "牛市"
+    ]
+  },
+  {
+    "slug": "why-don-t-boys-initiate-things-anymore",
+    "title": "为什么现在的男生都不主动了呢？",
+    "date": "2024-11-06",
+    "excerpt": "> 转载自[<span style=\"color: blue;\">知乎</span>](https://www.zhihu.com/question/323094998/answer/1402642176?utm_medium=social&utm_oi=1234553464145354752&utm_psn=1714937401829638144&utm_source=ZHShareTarget",
+    "section": "life",
+    "tags": []
+  },
+  {
+    "slug": "btcdiary02-the-bull-market",
+    "title": "2024.10.22交易员日记02-牛市来临！！！",
+    "date": "2024-10-30",
+    "excerpt": "**牛旗已经成立，再跌下来就不讲理了。 **",
+    "section": "life",
+    "tags": [
+      "BTC;",
+      "币圈",
+      ";",
+      "牛市"
+    ]
+  },
+  {
+    "slug": "btcdiary01-compulsory-position",
+    "title": "2024.10.22交易员日记01-关于BTC的预测",
+    "date": "2024-10-22",
+    "excerpt": "> 今天早上起床就被强平啦 ## 😭😭😭",
+    "section": "life",
+    "tags": [
+      "BTC",
+      "币圈"
+    ]
+  },
+  {
+    "slug": "thinking-about-follow",
+    "title": "关于 Follow 的思考",
+    "date": "2024-10-11",
+    "excerpt": "![](https://img.curvio.org/blog/img/no_important/202410111822053.png)",
+    "section": "tech",
+    "tags": [
+      "Follow",
+      "RSS"
+    ]
+  },
+  {
+    "slug": "using-wechat-input-method-on-mac",
+    "title": "在Mac上使用微信输入法的最佳解决方案，避免错误切换到ABC输入法（KeyboardHolder）",
+    "date": "2024-10-11",
+    "excerpt": "> 因为iPhone和mac之间的接力总是抽风，经常复制粘贴不好用，所以我还是全面转到稳定好用的微信输入法作为跨设备的剪切板传输工具。但是因为macOS的限制，我们可以看到： > >> 1.iPhone无法读取最新复制的信息 >> 2.mac如果没有在微信输入法状态下，则无法获取最新的剪切板信息 >>  > > 那这个文章就来分享一下我是如何解决mac中的abc输入法难题以及如何快速方便的剪切板跨",
+    "section": "tech",
+    "tags": [
+      "微信输入法",
+      "KeyboardHolder"
+    ]
+  },
+  {
+    "slug": "telegram-setting-chinese",
+    "title": "Telegram电报设置中文教程",
+    "date": "2024-09-02",
+    "excerpt": ">   Telegram是一款端对端加密的即时聊天工具，也称为TG或电报。然而，美中不足的是Telegram的界面语言没有中文。于是，我们整理了Telegram设置中文的方法（简体中文与繁体中文），供需要的朋友使用 > > > ​\t说明：Telegram 官方只开放了语言包翻译接口, 官方并没有提供中文语言包。目前所有的中文语言包都是非官方用户翻译的。有些语言包都很久没更新了(甚至停更了)。",
+    "section": "tech",
+    "tags": []
+  },
+  {
+    "slug": "brief-comment",
+    "title": "我收藏的短评01",
+    "date": "2024-07-18",
+    "excerpt": "##### 1",
+    "section": "life",
+    "tags": [
+      "短评"
+    ]
+  },
+  {
+    "slug": "trafficmonitor",
+    "title": "TrafficMonitorWindows：平台系统性能、网速监测工具",
+    "date": "2024-06-23",
+    "excerpt": "> Traffic Monitor 是一款用于 Windows 平台的网速监控悬浮窗软件，可以显示当前网速、CPU 及内存利用率，支持嵌入到任务栏显示，支持更换皮肤、历史流量统计等功能。",
+    "section": "tech",
+    "tags": [
+      "TrafficMonitor",
+      "tool"
+    ]
+  },
+  {
+    "slug": "cs2-map-chinese-point-name",
+    "title": "CS2地图最新中文报点大全！",
+    "date": "2024-06-21",
+    "excerpt": "# CS2最新全图报点，细节超全！",
+    "section": "tech",
+    "tags": [
+      "cs",
+      "map"
+    ]
+  },
+  {
+    "slug": "cs2-map-english-point-name",
+    "title": "CS2地图最新英文报点大全！",
+    "date": "2024-06-21",
+    "excerpt": "## CS2地图最新英文报点大全！",
+    "section": "tech",
+    "tags": [
+      "cs",
+      "map"
+    ]
+  },
+  {
+    "slug": "mycs-setting",
+    "title": "我的CS设置",
+    "date": "2024-06-21",
+    "excerpt": "> 我是20年入坑的CSGO，很幸运，那时送了优先账户，我那时把大部分精力用在校园生活中，很少打CS，也不懂啥大行动，major通行证，勋章啥的，错过了很多东西，给我留下了遗憾，就像现在谁能想到蝴蝶刀价格暴涨。 > 第二段经历则是23年我高三时，备战高考，却受班级风气的影响迷恋上了CS，我开始练枪、开始学习道具、看直播、上b站学习，开始用buff花20块钱配了全套皮肤，其中不乏几毛几分的皮肤，也买",
+    "section": "tech",
+    "tags": [
+      "cs",
+      "setting"
+    ]
+  },
+  {
+    "slug": "soundswitch",
+    "title": "SoundSwitch - 使用快捷键切换音频输入、输出设备[Windows]",
+    "date": "2024-06-21",
+    "excerpt": "> 有些朋友的电脑上可能插着耳机、音箱、麦克风、耳麦多种音频的输出、输入设备，虽然系统在右下角有选择的设置，但如果每次都设置的话，那就很麻烦了。SoundSwitch 就是一款可以让你通过快捷键的方式，来实现快速切换音频输入、输出设备的功能。",
+    "section": "tech",
+    "tags": [
+      "SoundSwitch",
+      "tool"
+    ]
+  },
+  {
+    "slug": "forbid-qqmusic-background-upload",
+    "title": "禁止QQ音乐后台上传",
+    "date": "2024-06-13",
+    "excerpt": ">   最近发现QQ音乐在后台偷跑上传，网络上有的人甚至被偷跑了2TB的流量，这节省的CDN流量都足够换几百块了，能买一两年的QQ会员了。  以下是禁止QQ音乐P2P上传的方法： &nbsp;",
+    "section": "tech",
+    "tags": [
+      "技巧"
+    ]
+  },
+  {
+    "slug": "clash-verge",
+    "title": "Clash Verge 教程",
+    "date": "2024-05-22",
+    "excerpt": ">   程序员想访问GitHub或其他网站，可是打不开怎么办？     这时候掌握科学上网方式尤为重要",
+    "section": "tech",
+    "tags": [
+      "科学上网",
+      "tool"
+    ]
+  },
+  {
+    "slug": "diary01-println-error",
+    "title": "2024.5.17有感而发-关于println报错的解决",
+    "date": "2024-05-17",
+    "excerpt": ">   初学代码时你是否遇到java中sout的println报错？",
+    "section": "life",
+    "tags": [
+      "报错"
+    ]
+  },
+  {
+    "slug": "javascript-mqtt-temperaturedemo",
+    "title": "IoT技术选型及模型设计的思考",
+    "date": "2024-05-16",
+    "excerpt": ">  IoT是Internet of Things的缩写，对应的中文就是“物联网”。在近几年随着大型物联平台的出现和智能设备数量和种类，不断增长，芯片厂商不断的技术突破，新的使用领域和互联场景不断出现，IoT进入到一个快速增长和爆发的时代。",
+    "section": "tech",
+    "tags": []
+  }
+]

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>禁止QQ音乐后台上传</title>
+  <link rel="stylesheet" href="/assets/site.css">
+  </head>
+<body>
+  <div class="site-shell">
+    <header class="site-header stack">
+      <div class="nav-shell">
+        <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">Menu</button>
+        <nav class="nav" id="primary-nav" data-primary-nav aria-label="Primary">
+          <a href="/life.html">生活</a>
+          <a href="/tech.html">技术</a>
+          <a href="/page/about.html">关于</a>
+        </nav>
+      </div>
+      <div class="brand">
+        <h1><a href="/">Davis Static</a></h1>
+        <p>A clean and lightweight static blog</p>
+      </div>
+      <div class="separator-wrap">
+        <hr class="davis-separator">
+      </div>
+    </header>
+    <main class="article">
+      <h1>禁止QQ音乐后台上传</h1>
+      <blockquote>
+<p>  最近发现QQ音乐在后台偷跑上传，网络上有的人甚至被偷跑了2TB的流量，这节省的CDN流量都足够换几百块了，能买一两年的QQ会员了。 
+以下是禁止QQ音乐P2P上传的方法：
+&nbsp;</p>
+</blockquote>
+<h3 id="1、打开任意文件夹，在地址栏输入：">1、打开任意文件夹，在地址栏输入：</h3>
+<p>C:\Users%USERNAME%\AppData\Roaming\Tencent\QQMusic\QQMusicCache  </p>
+<p>如果你在Q音里自定义了缓存存放目录，请在Q音设置里打开QQMusicCache文件夹，如图：</p>
+<p><img src="https://img.curvio.org/blog/img/no_important/202406131658681.png" alt="QQMusicCache" title="QQMusicCache"></p>
+<center style="font-size:14px;color:#C0C0C0;text-decoration:underline">QQMusicCache</center> 
+<br>
+
+<h3 id="2、找到目录下downloadproxynew文件夹，双击进入文件夹">2、找到目录下&quot;downloadproxyNew&quot;文件夹，双击进入文件夹</h3>
+<br>
+
+<h3 id="3、关闭qq音乐以及其后台，清除tp_dp_file和tp2p文件夹里的所有内容但是不要删除这两个文件夹。">3、关闭QQ音乐以及其后台，清除&quot;tp_dp_file&quot;和&quot;tp2p&quot;文件夹里的所有内容但是不要删除这两个文件夹。</h3>
+<p><img src="https://img.curvio.org/blog/img/no_important/202406131701681.png" alt="删除已下载的缓存" title="删除已下载的缓存"></p>
+<center style="font-size:14px;color:#C0C0C0;text-decoration:underline">删除已下载的缓存</center>  
+
+<p>这两个文件夹下是QQ音乐之前下载的给别人的缓存，有好几个G
+&nbsp;</p>
+<h3 id="4、回到上级的qqmusiccache文件夹">4、回到上级的&quot;QQMusicCache&quot;文件夹</h3>
+<p>右键&quot;downloadproxyNew&quot; - 属性 - 安全 - 高级 - 禁用继承 - 从此对象中删除所有已继承的权限 - 应用 - 一路确定就行</p>
+<p><img src="https://img.curvio.org/blog/img/no_important/202406131708688.png" alt="禁用downloadproxyNew权限" title="禁用downloadproxyNew权限"></p>
+<center style="font-size:14px;color:#C0C0C0;text-decoration:underline">禁用downloadproxyNew权限</center>
+
+
+<h3 id="5、验证-这时候双击downloadproxynew文件夹，发现弹出权限请求则证明成功了，千万不要点确定进去，不然又得重新搞。">5、验证 这时候双击&quot;downloadproxyNew&quot;文件夹，发现弹出权限请求则证明成功了，千万不要点确定进去，不然又得重新搞。</h3>
+<p>&nbsp;
+<img src="https://img.curvio.org/blog/img/no_important/202406131744231.png" alt="" title="出现权限提醒即表示成功"></p>
+<center style="font-size:14px;color:#C0C0C0;text-decoration:underline">出现权限提醒即表示成功</center>
+&nbsp;
+&nbsp;
+
+
+      <p class="post-meta">2024-06-13</p>
+      <p class="post-taxonomy"><a href="/tags/技巧.html">技巧</a></p>
+    </main>
+    <footer class="site-footer stack">
+      <div class="separator-wrap">
+        <hr class="davis-separator">
+      </div>
+      <p>© <span data-year></span></p>
+      <p class="credits">Theme by <a href="https://andersnoren.se" target="_blank" rel="noopener">Anders Norén</a></p>
+    </footer>
+  </div>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

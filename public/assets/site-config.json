@@ -1,0 +1,11 @@
+{
+  "siteTitle": "Davis Static",
+  "tagline": "A clean and lightweight static blog",
+  "nav": [
+    { "label": "生活", "href": "/life.html" },
+    { "label": "技术", "href": "/tech.html" },
+    { "label": "关于", "href": "/page/about.html" }
+  ],
+  "archiveTitle": "归档",
+  "archiveSubtitle": ""
+}

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2024.5.17有感而发-关于println报错的解决</title>
+  <link rel="stylesheet" href="/assets/site.css">
+  </head>
+<body>
+  <div class="site-shell">
+    <header class="site-header stack">
+      <div class="nav-shell">
+        <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">Menu</button>
+        <nav class="nav" id="primary-nav" data-primary-nav aria-label="Primary">
+          <a href="/life.html">生活</a>
+          <a href="/tech.html">技术</a>
+          <a href="/page/about.html">关于</a>
+        </nav>
+      </div>
+      <div class="brand">
+        <h1><a href="/">Davis Static</a></h1>
+        <p>A clean and lightweight static blog</p>
+      </div>
+      <div class="separator-wrap">
+        <hr class="davis-separator">
+      </div>
+    </header>
+    <main class="article">
+      <h1>2024.5.17有感而发-关于println报错的解决</h1>
+      <blockquote>
+<p>  初学代码时你是否遇到java中sout的println报错？</p>
+</blockquote>
+<h2 id="问题描述">问题描述</h2>
+<p><img src="https://img.curvio.org/blog/img/no_important/202406032234442.jpg" alt="无法解析符号" title="无法解析符号"></p>
+<p>可以看到，我这行代码提示无法解析println,我刚学java时跟着学校的课程走，老师讲的不是很生动，加上我半吊子的学习态度。自然而然在后续的敲代码过程中，各种问题百出。</p>
+<p>也许我现在描述的这个问题不值一提，因为它的问题出在哪实在是过于明显，但在我在刚学Java敲代码时，这个问题困扰着我，令我crazy。</p>
+<h2 id="为什么会报错">为什么会报错</h2>
+<p>写代码的时候想直接在类中输出，发现：1、使用syso快捷方式的时候无法自动补全；2、手动写代码的时候“println”标红。在试过很多办法之后，才知道我忽略了一个很重要的问题—System.out.println()不能直接写在类里面，要写在方法中，如果硬是要在类中输出，可以加上大括号，让它变成普通块。</p>
+<h2 id="解决方法">解决方法</h2>
+<p>解决方法1：写在类中。</p>
+<p><img src="https://img.curvio.org/blog/img/no_important/202406032257167.jpg" alt="无法解析符号解决一" title="无法解析符号解决一"></p>
+<p>解决方法2：加上大括号，让它变成普通块。
+<img src="https://img.curvio.org/blog/img/no_important/202406032257848.jpg" alt="无法解析符号解决二" title="无法解析符号解决二"></p>
+<p>加上大括号之后，println不标红了。</p>
+<h2 id="总结">总结</h2>
+<p>这次的报错我在网上翻查资料快一个小时，各种说法都有，最后才找到问题所在，归根结底还是基础不牢固，不然写代码的时候就会白白浪费不少时间，引以为戒。</p>
+
+      <p class="post-meta">2024-05-17</p>
+      <p class="post-taxonomy"><a href="/tags/报错.html">报错</a></p>
+    </main>
+    <footer class="site-footer stack">
+      <div class="separator-wrap">
+        <hr class="davis-separator">
+      </div>
+      <p>© <span data-year></span></p>
+      <p class="credits">Theme by <a href="https://andersnoren.se" target="_blank" rel="noopener">Anders Norén</a></p>
+    </footer>
+  </div>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

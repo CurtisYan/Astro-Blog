@@ -1,0 +1,398 @@
+:root {
+  --foreground: #000000;
+  --background: #ffffff;
+  --primary: #767676;
+  --secondary: #dddddd;
+  --space-10: 8px;
+  --space-20: 12px;
+  --space-30: 16px;
+  --space-40: 24px;
+  --space-50: 32px;
+  --space-60: clamp(32px, 7.5vw, 40px);
+  --space-70: clamp(40px, 9vw, 56px);
+  --space-80: clamp(64px, 10.5vw, 80px);
+  --content-size: 620px;
+  --wide-size: 1240px;
+}
+
+@font-face {
+  font-family: "PT Serif";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/pt-serif/pt-serif-v17-latin-regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PT Serif";
+  font-style: italic;
+  font-weight: 500;
+  src: url("./fonts/pt-serif/pt-serif-v17-latin-italic.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PT Serif";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/pt-serif/pt-serif-v17-latin-700.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PT Serif";
+  font-style: italic;
+  font-weight: 700;
+  src: url("./fonts/pt-serif/pt-serif-v17-latin-700italic.woff2") format("woff2");
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "PT Serif", ui-serif, Georgia, serif;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.5;
+  padding: var(--space-50);
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.15em;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.site-shell {
+  max-width: var(--wide-size);
+  margin: 0 auto;
+}
+
+.stack {
+  max-width: var(--content-size);
+  margin: 0 auto;
+}
+
+.site-header {
+  padding-top: 0;
+  padding-bottom: var(--space-40);
+}
+
+.nav-shell {
+  position: relative;
+}
+
+.nav-toggle {
+  display: none;
+  margin: 0 auto var(--space-40);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--foreground);
+  font: inherit;
+  cursor: pointer;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-50);
+  margin-bottom: var(--space-80);
+}
+
+.nav a {
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.nav a:hover,
+.nav a:focus {
+  text-decoration: underline;
+}
+
+.archive-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-50);
+}
+
+.archive-links a {
+  font-size: 1.2rem;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: var(--space-30);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 36px);
+}
+
+.brand p {
+  margin: 1em 0 0;
+  color: var(--primary);
+}
+
+.separator-wrap {
+  width: 100px;
+  margin: 0 auto;
+}
+
+.davis-separator {
+  border: none;
+  border-bottom: 0.5px solid var(--secondary);
+  border-top: 0.5px solid var(--secondary);
+  overflow: visible;
+  position: relative;
+  margin: var(--space-80) 0;
+}
+
+main .davis-separator {
+  margin: var(--space-40) 0;
+}
+
+.davis-separator::before,
+.davis-separator::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: calc(50% - 6px);
+  transform: rotate(45deg);
+  border: 1px solid var(--secondary);
+  background: var(--background);
+}
+
+.davis-separator::before {
+  left: calc(50% - 14px);
+}
+
+.davis-separator::after {
+  left: calc(50% + 2px);
+}
+
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-item {
+  margin-bottom: var(--space-80);
+}
+
+.archive-month-item {
+  margin: 0 0 var(--space-30);
+}
+
+.archive-month {
+  margin: 0 0 var(--space-30);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.year-item {
+  margin-bottom: var(--space-60);
+}
+
+.year-header {
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 0 var(--space-20);
+}
+
+.year-posts {
+  list-style: disc;
+  margin: 0 0 var(--space-40);
+  padding: 0 0 0 1.2em;
+}
+
+.year-post {
+  margin: 0.25em 0;
+}
+
+.year-date {
+  color: var(--primary);
+  margin-right: 0.35em;
+}
+
+.year-link {
+  text-decoration: underline;
+}
+
+.post-title {
+  text-align: center;
+  margin: 0 0 var(--space-30);
+  font-size: clamp(16px, 1.4vw, 18px);
+  font-weight: 700;
+}
+
+.post-excerpt {
+  margin: var(--space-30) 0;
+}
+
+.post-meta {
+  text-align: center;
+  color: var(--primary);
+  font-size: 0.95rem;
+}
+
+.post-taxonomy {
+  text-align: center;
+  color: var(--primary);
+  margin: 0.35em 0;
+  font-size: 0.95rem;
+}
+
+.post-taxonomy a {
+  color: inherit;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-top: var(--space-60);
+}
+
+.pagination a,
+.pagination span {
+  color: var(--primary);
+}
+
+.pagination a.is-disabled {
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+main {
+  margin: 0;
+}
+
+.article {
+  max-width: var(--content-size);
+  margin: 0 auto;
+}
+
+.article h1 {
+  text-align: center;
+  font-size: clamp(16px, 1.5vw, 18px);
+  margin: 0 0 var(--space-30);
+}
+
+.article figure {
+  margin: var(--space-30) 0;
+}
+
+.article figcaption {
+  color: var(--primary);
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+.archive-header,
+.page-header,
+.error-header,
+.search-header {
+  text-align: center;
+}
+
+.archive-header {
+  margin-top: 0;
+}
+
+.archive-header h2,
+.archive-header p {
+  margin: 0.4em 0;
+}
+
+.archive-header + .separator-wrap .davis-separator {
+  margin: var(--space-40) 0;
+}
+
+.search-box {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  border: 1px solid var(--foreground);
+}
+
+.search-box input {
+  flex: 1;
+  border: 0;
+  padding: 0.6em;
+  font: inherit;
+}
+
+.search-box button {
+  border: 0;
+  border-left: 1px solid var(--foreground);
+  padding: 0.6em 0.9em;
+  background: var(--foreground);
+  color: var(--background);
+  font: inherit;
+  cursor: pointer;
+}
+
+.site-footer {
+  padding-top: var(--space-70);
+}
+
+.site-footer p {
+  margin: 0;
+  text-align: center;
+}
+
+.credits {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: var(--space-40);
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    gap: var(--space-30);
+    margin-bottom: var(--space-50);
+  }
+
+  .nav.is-open {
+    display: flex;
+    flex-direction: column;
+  }
+}
