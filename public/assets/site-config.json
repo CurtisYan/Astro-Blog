@@ -7,5 +7,7 @@
     { "label": "关于", "href": "/page/about.html" }
   ],
   "archiveTitle": "归档",
-  "archiveSubtitle": ""
+  "archiveSubtitle": "",
+  "footerText": "© 2026 Curtis's Blog",
+  "footerCredit": "Theme by Anders Norén"
 }

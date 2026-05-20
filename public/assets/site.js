@@ -273,6 +273,34 @@ function applyConfig(config) {
       }
     }
   }
+
+  const footer = document.querySelector(".site-footer");
+  if (footer) {
+    const footerTextNode = footer.querySelector("p");
+    if (footerTextNode && config.footerText) {
+      footerTextNode.textContent = config.footerText;
+    }
+
+    const creditText = typeof config.footerCredit === "string" ? config.footerCredit : "";
+    const creditHtml = typeof config.footerCreditHtml === "string" ? config.footerCreditHtml : "";
+    let creditNode = footer.querySelector(".credits");
+
+    if (!creditNode && (creditText || creditHtml)) {
+      creditNode = document.createElement("p");
+      creditNode.className = "credits";
+      footer.appendChild(creditNode);
+    }
+
+    if (creditNode) {
+      if (creditHtml) {
+        creditNode.innerHTML = creditHtml;
+      } else if (creditText) {
+        creditNode.textContent = creditText;
+      } else {
+        creditNode.remove();
+      }
+    }
+  }
 }
 
 function matchSearch(post, term) {

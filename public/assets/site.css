@@ -373,7 +373,9 @@ main {
 }
 
 .credits {
-  display: none;
+  color: var(--primary);
+  margin-top: var(--space-20);
+  font-style: italic;
 }
 
 @media (max-width: 768px) {
