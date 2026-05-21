@@ -3,7 +3,7 @@ const path = require('path');
 
 function slugify(text){
   return text.toString().toLowerCase().trim()
-    .replace(/^[0-9\-_.]+/, '')
+    .replace(/^\d+\-/, '')
     .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, '-')
     .replace(/-+/g,'-')
     .replace(/(^-|-$)/g,'');
@@ -132,8 +132,15 @@ for (const f of files){
   posts.push({ slug, title, date, excerpt, section, tags, source: parent || 'root' });
 }
 
-// sort by date desc
-posts.sort((a,b)=> new Date(b.date) - new Date(a.date));
-
-fs.writeFileSync(outFile, JSON.stringify(posts,null,2),'utf8');
-console.log('Wrote', posts.length, 'posts to', outFile);
+// dedupe by slug: keep the newest by date when duplicates occur
+const map = new Map();
+for (const p of posts){
+  if (!map.has(p.slug)) map.set(p.slug, p);
+  else {
+    const existing = map.get(p.slug);
+    if (new Date(p.date) > new Date(existing.date)) map.set(p.slug, p);
+  }
+}
+const finalPosts = Array.from(map.values()).sort((a,b)=> new Date(b.date) - new Date(a.date));
+fs.writeFileSync(outFile, JSON.stringify(finalPosts,null,2),'utf8');
+console.log('Wrote', finalPosts.length, 'posts to', outFile);
