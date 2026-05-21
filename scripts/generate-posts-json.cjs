@@ -98,7 +98,7 @@ for (const f of files){
 }
 
 for (const f of files){
-  const rel = path.relative(path.join(__dirname,'..','public','assets','_posts'), f).replace(/\\/g,'/');
+  const rel = path.relative(postsDir, f).replace(/\\/g,'/');
   const parts = rel.split('/');
   const filename = parts.pop();
   const parent = parts[0] || '';
@@ -129,7 +129,7 @@ for (const f of files){
     else if (typeof fm.tags === 'string') tags = fm.tags.split(/[,\s]+/).map(s=>s.trim()).filter(Boolean);
   }
 
-  posts.push({ slug, title, date, excerpt, section, tags });
+  posts.push({ slug, title, date, excerpt, section, tags, source: parent || 'root' });
 }
 
 // sort by date desc

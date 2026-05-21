@@ -104,7 +104,7 @@ img {
 }
 
 .nav-toggle {
-  display: block;
+  display: none;
   margin: 0 auto var(--space-40);
   padding: 0;
   border: 0;
@@ -115,15 +115,15 @@ img {
 }
 
 .nav {
-  display: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-50);
   margin-bottom: var(--space-80);
 }
 
 .nav.is-open {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .nav a {
@@ -138,12 +138,31 @@ img {
 
 .archive-links {
   display: flex;
+  text-decoration: none;
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-50);
 }
-
+  text-decoration: underline;
 .archive-links a {
+
+.post-title a,
+.year-link,
+.post-taxonomy a,
+.archive-links a {
+  text-decoration: none;
+}
+
+.post-title a:hover,
+.post-title a:focus,
+.year-link:hover,
+.year-link:focus,
+.post-taxonomy a:hover,
+.post-taxonomy a:focus,
+.archive-links a:hover,
+.archive-links a:focus {
+  text-decoration: underline;
+}
   font-size: 1.2rem;
 }
 
@@ -154,7 +173,9 @@ img {
 
 .brand h1 {
   margin: 0;
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: clamp(36px, 5vw, 48px);
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 400;
 }
 
 .brand p {
@@ -167,14 +188,7 @@ img {
   margin: 0 auto;
 }
 
-.davis-separator {
-  border: none;
-  border-bottom: 0.5px solid var(--secondary);
-  border-top: 0.5px solid var(--secondary);
-  overflow: visible;
-  position: relative;
-  margin: var(--space-40) 0;
-}
+.davis-separator { display: none; }
 
 main .davis-separator {
   margin: var(--space-40) 0;
@@ -308,7 +322,9 @@ main {
 
 .article h1 {
   text-align: center;
-  font-size: clamp(16px, 1.5vw, 18px);
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-size: 24px;
   margin: 0 0 var(--space-30);
 }
 
@@ -337,6 +353,12 @@ main {
 .archive-header h2,
 .archive-header p {
   margin: 0.4em 0;
+}
+
+.archive-header h2 {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 400;
+  font-size: 24px;
 }
 
 .archive-header + .separator-wrap .davis-separator {
@@ -387,7 +409,19 @@ main {
     padding: var(--space-40);
   }
 
+  .nav-toggle {
+    display: block;
+    margin-bottom: var(--space-30);
+  }
+
+  .nav {
+    display: none;
+    gap: var(--space-30);
+    margin-bottom: var(--space-50);
+  }
+
   .nav.is-open {
+    display: flex;
     flex-direction: column;
   }
 }

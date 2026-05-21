@@ -249,6 +249,22 @@ function markCurrentNavLink() {
 function applyConfig(config) {
   if (!config) return;
 
+  const siteName = config.siteTitle || config.headerTitle || "";
+  if (siteName) {
+    const currentTitle = document.title || "";
+    const titleParts = currentTitle.split("|").map((part) => part.trim()).filter(Boolean);
+    if (currentTitle.trim() === siteName) {
+      document.title = siteName;
+    } else if (titleParts.length > 1) {
+      titleParts[titleParts.length - 1] = siteName;
+      document.title = titleParts.join(" | ");
+    } else if (currentTitle.trim()) {
+      document.title = `${currentTitle.trim()} | ${siteName}`;
+    } else {
+      document.title = siteName;
+    }
+  }
+
   const brandTitle = document.querySelector(".brand h1 a");
   const brandTagline = document.querySelector(".brand p");
   if (brandTitle && config.siteTitle) {

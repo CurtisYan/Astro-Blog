@@ -19,15 +19,11 @@
       "subtitle": "",
       "filter": "tech",
       "dirs": ["tech"]
-    },
-    "game": {
-      "title": "游戏",
-      "subtitle": "",
-      "dirs": []
     }
   },
   "archiveTitle": "归档",
   "archiveSubtitle": "",
-  "footerTextHtml": "© 2026 <a href=\"https://blog.curvio.org\" target=\"_blank\" rel=\"noopener\">Curtis's Blog</a>",
-  "footerCreditHtml": "Theme by <a href=\"https://andersnoren.se/\" target=\"_blank\" rel=\"noopener\">Anders Norén</a>"
+  "footerTextHtml": "© 2026 <a href=\"https://blog.curvio.org\">Curtis's Blog</a>",
+  "footerCreditHtml": "Theme by <a href=\"https://andersnoren.se\">Anders Norén</a>",
+  "aboutSource": "assets/_pages/about.md"
 }

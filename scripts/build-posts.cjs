@@ -162,7 +162,6 @@ for (const f of mdFiles){
       </div>
       <div class="separator-wrap">
         <hr class="davis-separator">
-      </div>
     </header>
     <main class="article">
       <h1>${title}</h1>
@@ -171,9 +170,6 @@ for (const f of mdFiles){
       ${tagLinks ? `<p class="post-taxonomy">${tagLinks}</p>` : ''}
     </main>
     <footer class="site-footer stack">
-      <div class="separator-wrap">
-        <hr class="davis-separator">
-      </div>
       <p>${footerTextHtml}</p>
       ${footerCreditHtml ? `<p class="credits">${footerCreditHtml}</p>` : ''}
     </footer>
@@ -185,7 +181,7 @@ for (const f of mdFiles){
   const outFile = path.join(outPostsDir, slug + '.html');
   fs.writeFileSync(outFile, pageHtml,'utf8');
 
-  posts.push({ slug, title, date, excerpt, section, tags });
+  posts.push({ slug, title, date, excerpt, section, tags, source: rel.split('/')[0] || 'root' });
   console.log('Wrote post:', outFile);
 }
 
@@ -200,3 +196,61 @@ for (const e of existing){
 
 fs.writeFileSync(outJson, JSON.stringify(merged,null,2),'utf8');
 console.log('Updated posts.json with', merged.length, 'entries');
+
+// Generate About page from configured markdown (if present)
+try {
+  const aboutRel = siteConfig.aboutSource || '';
+  if (aboutRel) {
+    const aboutPath = path.join(__dirname, '..', 'public', aboutRel);
+    if (fs.existsSync(aboutPath)) {
+      const aboutMd = fs.readFileSync(aboutPath, 'utf8');
+      const aboutFm = parseFrontmatter(aboutMd);
+      const aboutTitle = aboutFm.title || '关于';
+      const aboutBodyMd = aboutMd.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
+      const aboutHtmlBody = marked.parse(aboutBodyMd);
+      const pageDir = path.join(__dirname, '..', 'public', 'page');
+      if (!fs.existsSync(pageDir)) fs.mkdirSync(pageDir, { recursive: true });
+      const aboutPage = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${escapeHtml(aboutTitle)} | ${escapeHtml(siteTitle)}</title>
+  <link rel="stylesheet" href="/assets/site.css">
+  </head>
+<body>
+  <div class="site-shell">
+    <header class="site-header stack">
+      <div class="nav-shell">
+        <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">菜单</button>
+        <nav class="nav" id="primary-nav" data-primary-nav aria-label="Primary">
+          <a href="/life.html">生活</a>
+          <a href="/tech.html">技术</a>
+          <a href="/page/about.html">关于</a>
+        </nav>
+      </div>
+      <div class="brand">
+        <h1><a href="/">${escapeHtml(siteTitle)}</a></h1>
+        <p>${escapeHtml(siteTagline)}</p>
+      </div>
+    </header>
+    <main class="article">
+      <h1>${escapeHtml(aboutTitle)}</h1>
+      ${aboutHtmlBody}
+    </main>
+    <footer class="site-footer stack">
+      <p>${footerTextHtml}</p>
+      ${footerCreditHtml ? `<p class="credits">${footerCreditHtml}</p>` : ''}
+    </footer>
+  </div>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>`;
+      const aboutOut = path.join(pageDir, 'about.html');
+      fs.writeFileSync(aboutOut, aboutPage, 'utf8');
+      console.log('Wrote about page:', aboutOut);
+    }
+  }
+} catch(e) {
+  console.error('Failed to generate about page:', e && e.message);
+}
