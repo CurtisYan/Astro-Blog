@@ -12,13 +12,13 @@
       "title": "生活",
       "subtitle": "",
       "filter": "life",
-      "dirs": []
+      "dirs": ["daily"]
     },
     "tech": {
       "title": "技术",
       "subtitle": "",
       "filter": "tech",
-      "dirs": []
+      "dirs": ["tech"]
     },
     "game": {
       "title": "游戏",

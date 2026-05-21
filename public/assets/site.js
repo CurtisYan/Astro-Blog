@@ -221,6 +221,12 @@ function setupNavigationToggle() {
     return;
   }
 
+  // Ensure the visible label is localized; JS will override the static 'Menu' text.
+  const configMenuLabel = (window.__SITE_CONFIG && window.__SITE_CONFIG.menuLabel) || "菜单";
+  if (toggle.textContent.trim() === "Menu") {
+    toggle.textContent = configMenuLabel;
+  }
+
   toggle.addEventListener("click", () => {
     const expanded = toggle.getAttribute("aria-expanded") === "true";
     toggle.setAttribute("aria-expanded", String(!expanded));

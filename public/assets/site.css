@@ -104,7 +104,7 @@ img {
 }
 
 .nav-toggle {
-  display: none;
+  display: block;
   margin: 0 auto var(--space-40);
   padding: 0;
   border: 0;
@@ -115,11 +115,15 @@ img {
 }
 
 .nav {
+  display: none;
+  gap: var(--space-50);
+  margin-bottom: var(--space-80);
+}
+
+.nav.is-open {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-50);
-  margin-bottom: var(--space-80);
 }
 
 .nav a {
@@ -383,18 +387,7 @@ main {
     padding: var(--space-40);
   }
 
-  .nav-toggle {
-    display: block;
-  }
-
-  .nav {
-    display: none;
-    gap: var(--space-30);
-    margin-bottom: var(--space-50);
-  }
-
   .nav.is-open {
-    display: flex;
     flex-direction: column;
   }
 }
