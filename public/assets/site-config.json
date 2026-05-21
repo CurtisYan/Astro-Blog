@@ -1,5 +1,6 @@
 {
   "siteTitle": "Curtis's Blog",
+  "headerTitle": "Curtis's Blog",
   "tagline": "",
   "nav": [
     { "label": "生活", "href": "/life.html" },
@@ -10,12 +11,19 @@
     "life": {
       "title": "生活",
       "subtitle": "",
-      "filter": "life"
+      "filter": "life",
+      "dirs": []
     },
     "tech": {
       "title": "技术",
       "subtitle": "",
-      "filter": "tech"
+      "filter": "tech",
+      "dirs": []
+    },
+    "game": {
+      "title": "游戏",
+      "subtitle": "",
+      "dirs": []
     }
   },
   "archiveTitle": "归档",

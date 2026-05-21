@@ -104,7 +104,14 @@ function renderPostList(target, posts, options = {}) {
       years[y].push(post);
     }
 
-    for (const year of Object.keys(years)) {
+    // Ensure years are rendered newest-first (numeric years desc, Unknown last)
+    const keys = Object.keys(years || {});
+    const numeric = keys.filter((k) => k !== "Unknown").map((k) => Number(k)).filter((n) => !Number.isNaN(n));
+    numeric.sort((a, b) => b - a);
+    const sortedYears = numeric.map(String);
+    if (keys.includes("Unknown")) sortedYears.push("Unknown");
+
+    for (const year of sortedYears) {
       const yearItem = document.createElement('li');
       yearItem.className = 'year-item';
 
@@ -239,7 +246,7 @@ function applyConfig(config) {
   const brandTitle = document.querySelector(".brand h1 a");
   const brandTagline = document.querySelector(".brand p");
   if (brandTitle && config.siteTitle) {
-    brandTitle.textContent = config.siteTitle;
+    brandTitle.textContent = config.headerTitle || config.siteTitle;
   }
   if (brandTagline && typeof config.tagline === "string") {
     if (config.tagline) {
@@ -369,18 +376,38 @@ function matchSearch(post, term) {
   const basePath = listNode.dataset.basePath || "/";
 
   try {
+
     const posts = await loadPosts();
     let filtered = posts;
 
-    if (sectionFilter && config && config.sections && config.sections[sectionFilter] && config.sections[sectionFilter].filter) {
-      const configured = config.sections[sectionFilter].filter;
-      if (Array.isArray(configured)) {
-        filtered = filtered.filter((post) => configured.map(normalizeText).includes(normalizeText(post.section)));
+    // If the page requests a named section (data-section), and there's a matching
+    // config.sections entry, allow filtering by configured directories (dirs or dir)
+    // which map to the post's `source` field. If dirs is empty/absent, fall back
+    // to the older `filter` behavior or to matching post.section/categories.
+    if (sectionFilter && config && config.sections && config.sections[sectionFilter]) {
+      const sectionConfig = config.sections[sectionFilter] || {};
+
+      // Support `dirs` (array) or `dir` (single string) to map to post.source
+      const dirs = Array.isArray(sectionConfig.dirs) && sectionConfig.dirs.length
+        ? sectionConfig.dirs.map(normalizeText)
+        : (sectionConfig.dir ? [normalizeText(sectionConfig.dir)] : null);
+
+      if (dirs && dirs.length) {
+        filtered = filtered.filter((post) => dirs.includes(normalizeText(post.source || "")));
+      } else if (sectionConfig && sectionConfig.filter) {
+        if (Array.isArray(sectionConfig.filter)) {
+          const filters = sectionConfig.filter.map(normalizeText);
+          filtered = filtered.filter((post) => filters.includes(normalizeText(post.section || "")));
+        } else {
+          sectionFilter = normalizeText(sectionConfig.filter);
+        }
       } else {
-        sectionFilter = normalizeText(configured);
+        // no dirs or explicit filter configured — leave filtered as full posts list
       }
     }
 
+    // If sectionFilter is still present (either because no config existed or
+    // because a simple string filter was provided), perform legacy matching
     if (sectionFilter) {
       filtered = filtered.filter((post) => normalizeText(post.section) === sectionFilter);
       if (!filtered.length) {
