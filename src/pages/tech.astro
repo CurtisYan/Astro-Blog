@@ -1,7 +1,7 @@
 ---
-import { formatMonthDay, getPostHref, groupPostsByYear, loadPosts } from '../lib/posts';
+import { formatMonthDay, getPostHref, groupPostsByYear, loadPosts, filterPostsBySection } from '../lib/posts';
 
-const posts = await loadPosts();
+const posts = filterPostsBySection(await loadPosts(), 'tech');
 const groupedPosts = groupPostsByYear(posts);
 ---
 <!doctype html>
@@ -9,8 +9,7 @@ const groupedPosts = groupPostsByYear(posts);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Curtis's Blog</title>
-  <meta name="description" content="A static reconstruction of Davis Blocks for Cloudflare Pages.">
+  <title>技术 | Curtis's Blog</title>
   <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -24,16 +23,14 @@ const groupedPosts = groupPostsByYear(posts);
           <a href="/page/about.html">关于</a>
         </nav>
       </div>
-
       <div class="brand">
         <h1><a href="/">Curtis's Blog</a></h1>
-        <p>A clean and lightweight static blog</p>
       </div>
     </header>
 
     <main class="stack">
-      <header class="archive-header" data-archive-title="config">
-        <h2>归档</h2>
+      <header class="archive-header" data-archive-title="section" data-section="tech">
+        <h2>技术</h2>
       </header>
       <div class="archive-years">
         {groupedPosts.map((group) => (
@@ -57,9 +54,9 @@ const groupedPosts = groupPostsByYear(posts);
         <hr class="davis-separator">
       </div>
       <p>© <span data-year></span> Curtis's Blog</p>
+      <p class="credits">Theme by <a href="https://andersnoren.se">Anders Norén</a></p>
     </footer>
   </div>
-
   <script src="/assets/site.js?v=20260520b" defer></script>
 </body>
 </html>

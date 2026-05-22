@@ -3,8 +3,8 @@
   "headerTitle": "Curtis's Blog",
   "tagline": "",
   "nav": [
-    { "label": "生活", "href": "/life.html" },
-    { "label": "技术", "href": "/tech.html" },
+    { "label": "生活", "href": "/life/" },
+    { "label": "技术", "href": "/tech/" },
     { "label": "关于", "href": "/page/about.html" }
   ],
   "sections": {

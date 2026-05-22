@@ -25,7 +25,7 @@ function sectionLabel(section) {
 }
 
 function sectionPath(section) {
-  return `/${section}.html`;
+  return section === "life" ? "/life/" : section === "tech" ? "/tech/" : `/${section}/`;
 }
 
 function parseDateValue(dateText) {
