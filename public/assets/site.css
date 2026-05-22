@@ -337,10 +337,9 @@ main {
   margin: var(--space-50) 0;
 }
 
-.article p > img,
 .article figure.wp-block-image {
   display: block;
-  width: min(92%, 100%);
+  width: min(94%, 100%);
   margin: var(--space-60) auto;
 }
 
@@ -351,6 +350,16 @@ main {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
+}
+
+.article figure.wp-block-image.is-lead-image {
+  margin-top: var(--space-70);
+  margin-bottom: var(--space-70);
+}
+
+.article figure.wp-block-image.is-regular-image {
+  margin-top: var(--space-60);
+  margin-bottom: var(--space-60);
 }
 
 .article figure.wp-block-image figcaption {
