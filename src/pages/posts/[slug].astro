@@ -1,0 +1,54 @@
+---
+const { slug } = Astro.params;
+// Build a map of markdown files at build time
+const modules = import.meta.glob('../../content/posts/**/*.md');
+let match = null;
+for (const [file, resolver] of Object.entries(modules)){
+  const parts = file.split('/');
+  const name = parts[parts.length-1].replace(/\.md$/,'');
+  const s = name.replace(/^\d{4}[-_.]?\d{2}[-_.]?\d{2}[-_.]*/,'').replace(/[^a-zA-Z0-9\u4e00-\u9fa5]+/g,'-').toLowerCase();
+  if (s === slug){
+    match = { file, resolver };
+    break;
+  }
+}
+if (!match) throw new Error('Post not found: ' + slug);
+const mod = await match.resolver();
+const rendered = (mod && mod.default && mod.default.render) ? await mod.default.render() : { content: mod?.compiledContent || '' };
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{entry.data.title} | {Astro.site?.title ?? 'Blog'}</title>
+    <link rel="stylesheet" href="/assets/site.css">
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header stack">
+        <div class="nav-shell">
+          <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">菜单</button>
+          <nav class="nav" id="primary-nav" data-primary-nav aria-label="Primary">
+            <a href="/life.html">生活</a>
+            <a href="/tech.html">技术</a>
+            <a href="/page/about.html">关于</a>
+          </nav>
+        </div>
+        <div class="brand">
+          <h1><a href="/">{Astro.site?.title ?? 'Blog'}</a></h1>
+        </div>
+      </header>
+      <main class="article">
+        <h1>{entry.data.title}</h1>
+        <p class="post-meta">{entry.data.date}</p>
+        <article>
+          <div set:html={rendered.content}></div>
+        </article>
+      </main>
+      <footer class="site-footer stack">
+        <p>{/* footer preserved by site template */}</p>
+      </footer>
+    </div>
+  </body>
+</html>

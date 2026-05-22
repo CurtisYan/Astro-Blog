@@ -29,7 +29,26 @@
       <header class="archive-header" data-archive-title="config">
         <h2>归档</h2>
       </header>
-      <ul class="post-list" data-post-list data-page-size="0" data-page="1" data-base-path="/" data-group-by="year"></ul>
+      <ul class="post-list">
+        ---
+        // Load markdown modules from src/content/posts using import.meta.glob
+        const modules = import.meta.glob('../content/posts/**/*.md', { eager: true });
+        const posts = Object.entries(modules).map(([file, mod]) => {
+          const parts = file.split('/');
+          const name = parts[parts.length-1].replace(/\.md$/, '');
+          // derive slug from filename without date prefix
+          const slug = name.replace(/^\d{4}[-_.]?\d{2}[-_.]?\d{2}[-_.]*/,'').replace(/[^a-zA-Z0-9\u4e00-\u9fa5]+/g,'-').toLowerCase();
+          return { slug, data: (mod && mod.frontmatter) ? mod.frontmatter : { title: mod?.title || name, date: mod?.frontmatter?.date }, content: mod };
+        });
+        posts.sort((a,b)=> new Date(b.data.date || 0) - new Date(a.data.date || 0));
+        ---
+        {posts.map(post => (
+          <li>
+            <time>{post.data.date ? new Date(post.data.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) : ''}</time>
+            &nbsp; <a href={`/posts/${post.slug}/`}>{post.data.title || post.slug}</a>
+          </li>
+        ))}
+      </ul>
       <nav class="pagination" data-pagination aria-label="Pagination"></nav>
     </main>
 
