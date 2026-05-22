@@ -31,15 +31,8 @@
       </header>
       <ul class="post-list">
         ---
-        // Load markdown modules from src/content/posts using import.meta.glob
-        const modules = import.meta.glob('../content/posts/**/*.md', { eager: true });
-        const posts = Object.entries(modules).map(([file, mod]) => {
-          const parts = file.split('/');
-          const name = parts[parts.length-1].replace(/\.md$/, '');
-          // derive slug from filename without date prefix
-          const slug = name.replace(/^\d{4}[-_.]?\d{2}[-_.]?\d{2}[-_.]*/,'').replace(/[^a-zA-Z0-9\u4e00-\u9fa5]+/g,'-').toLowerCase();
-          return { slug, data: (mod && mod.frontmatter) ? mod.frontmatter : { title: mod?.title || name, date: mod?.frontmatter?.date }, content: mod };
-        });
+        import { getCollection } from 'astro:content';
+        const posts = await getCollection('posts');
         posts.sort((a,b)=> new Date(b.data.date || 0) - new Date(a.data.date || 0));
         ---
         {posts.map(post => (

@@ -1,20 +1,9 @@
 ---
 const { slug } = Astro.params;
-// Build a map of markdown files at build time
-const modules = import.meta.glob('../../content/posts/**/*.md');
-let match = null;
-for (const [file, resolver] of Object.entries(modules)){
-  const parts = file.split('/');
-  const name = parts[parts.length-1].replace(/\.md$/,'');
-  const s = name.replace(/^\d{4}[-_.]?\d{2}[-_.]?\d{2}[-_.]*/,'').replace(/[^a-zA-Z0-9\u4e00-\u9fa5]+/g,'-').toLowerCase();
-  if (s === slug){
-    match = { file, resolver };
-    break;
-  }
-}
-if (!match) throw new Error('Post not found: ' + slug);
-const mod = await match.resolver();
-const rendered = (mod && mod.default && mod.default.render) ? await mod.default.render() : { content: mod?.compiledContent || '' };
+import { getEntryBySlug } from 'astro:content';
+const entry = await getEntryBySlug('posts', slug);
+if (!entry) throw new Error('Post not found: ' + slug);
+const rendered = await entry.render();
 ---
 <!doctype html>
 <html lang="en">
