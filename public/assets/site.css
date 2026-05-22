@@ -334,14 +334,14 @@ main {
 }
 
 .article figure {
-  margin: var(--space-30) 0;
+  margin: var(--space-50) 0;
 }
 
 .article p > img,
 .article figure.wp-block-image {
   display: block;
-  width: min(94%, 100%);
-  margin: var(--space-50) auto;
+  width: min(92%, 100%);
+  margin: var(--space-60) auto;
 }
 
 .article figure.wp-block-image img,
@@ -350,6 +350,24 @@ main {
   width: 100%;
   max-width: 100%;
   height: auto;
+  border-radius: 10px;
+}
+
+.article figure.wp-block-image figcaption {
+  margin-top: var(--space-20);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--primary);
+  text-align: center;
+}
+
+.article p > img + em,
+.article p > img + small {
+  display: block;
+  margin-top: var(--space-20);
+  color: var(--primary);
+  text-align: center;
+  font-size: 0.88rem;
 }
 
 .article figcaption {
