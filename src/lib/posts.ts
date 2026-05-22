@@ -10,7 +10,16 @@ function pad(value: string | number) {
 }
 
 function parseDateFromString(value: string) {
-  const normalized = value.includes('T') ? value : value.replace(' ', 'T');
+  const trimmed = value.trim();
+  if (!trimmed) return null;
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
+    const [year, month, day] = trimmed.split('-').map(Number);
+    const parsed = new Date(year, month - 1, day, 12, 0, 0);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  }
+
+  const normalized = trimmed.includes('T') ? trimmed : trimmed.replace(' ', 'T');
   const parsed = new Date(normalized);
   return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
@@ -18,7 +27,7 @@ function parseDateFromString(value: string) {
 function parseDateFromId(id: string) {
   const match = id.match(/(\d{4})[-_/](\d{1,2})[-_/](\d{1,2})/);
   if (!match) return null;
-  return new Date(`${match[1]}-${pad(match[2])}-${pad(match[3])}T00:00:00`);
+  return new Date(`${match[1]}-${pad(match[2])}-${pad(match[3])}T12:00:00`);
 }
 
 export function getPostId(post: { id?: string; slug?: string }) {

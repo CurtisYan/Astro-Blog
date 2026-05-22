@@ -1,15 +1,13 @@
 ---
-
 title: Telegram电报设置中文教程
-date: 2024-09-03 00:29:41
+date: 2024-09-03
 category: 教程, 设置
 tags:
-     - "Telegram" 
+     - "Telegram"
      - "Chinese"
-     - "电报"    
+     - "电报"
 thumbnail: https://img.curvio.org/blog/img/no_important/202409030031392.jpg
 cover: https://img.curvio.org/blog/img/no_important/202409030031392.jpg
-
 ---
 
 >   Telegram是一款端对端加密的即时聊天工具，也称为TG或电报。然而，美中不足的是Telegram的界面语言没有中文。于是，我们整理了Telegram设置中文的方法（简体中文与繁体中文），供需要的朋友使用
