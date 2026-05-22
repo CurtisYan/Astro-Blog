@@ -337,6 +337,21 @@ main {
   margin: var(--space-30) 0;
 }
 
+.article p > img,
+.article figure.wp-block-image {
+  display: block;
+  width: min(94%, 100%);
+  margin: var(--space-50) auto;
+}
+
+.article figure.wp-block-image img,
+.article p > img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 .article figcaption {
   color: var(--primary);
   font-size: 0.9rem;
