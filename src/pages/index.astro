@@ -1,3 +1,10 @@
+---
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => new Date(b.data.date || 0).getTime() - new Date(a.data.date || 0).getTime());
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,12 +37,7 @@
         <h2>归档</h2>
       </header>
       <ul class="post-list">
-        ---
-        import { getCollection } from 'astro:content';
-        const posts = await getCollection('posts');
-        posts.sort((a,b)=> new Date(b.data.date || 0) - new Date(a.data.date || 0));
-        ---
-        {posts.map(post => (
+        {posts.map((post) => (
           <li>
             <time>{post.data.date ? new Date(post.data.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric' }) : ''}</time>
             &nbsp; <a href={`/posts/${post.slug}/`}>{post.data.title || post.slug}</a>

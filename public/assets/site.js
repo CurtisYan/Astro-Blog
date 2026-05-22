@@ -1,9 +1,5 @@
 async function loadPosts() {
-  const response = await fetch("/assets/posts.json", { cache: "no-store" });
-  if (!response.ok) {
-    throw new Error("Failed to load posts.json");
-  }
-  return response.json();
+  return [];
 }
 
 async function loadConfig() {
