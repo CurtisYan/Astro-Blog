@@ -10,8 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "build-posts": "node scripts/build-posts.cjs",
-    "gen-posts-json": "node scripts/generate-posts-json.cjs"
+    
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
