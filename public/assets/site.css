@@ -789,11 +789,14 @@ body.search-open {
   .nav-toggle {
     display: block;
     margin-bottom: var(--space-30);
+    opacity: 1;
+    transition: opacity 160ms ease;
   }
 
   .nav-toggle[aria-expanded="true"] {
     text-decoration: line-through;
     text-decoration-thickness: 0.04em;
+    opacity: 0.55;
   }
 
   .nav {
