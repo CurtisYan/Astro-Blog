@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 2024.10.22交易员日记02-牛市来临！！！
+title: 交易员日记02-牛市来临！！！
 category: 学习笔记
 tags: BTC; 币圈 ; 牛市
 keywords: BTC, 币圈
 description:
-date: 2024-10-30
+date: 2024.10.22
 ---
 **牛旗已经成立，再跌下来就不讲理了。 **
 

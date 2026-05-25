@@ -9,7 +9,7 @@ thumbnail: false
 cover: "https://img.curvio.org/blog/img/no_important/202406211929453.png" # 文章页头图
 date: 2024-06-21
 ---
-## CS2地图最新英文报点大全！
+### CS2地图最新英文报点
 
 如果你经常打国际服、Faceit等国际平台，记住英文地图报点非常重要！
 
@@ -22,35 +22,35 @@ date: 2024-06-21
 
 
 
-### Inferno <a id = "inferno"></a>
+#### Inferno <a id = "inferno"></a>
 ![Inferno-2](https://img.curvio.org/blog/img/no_important/202406211923485.png)
 
 
-### Mirage <a id = "mirage"></a>
+#### Mirage <a id = "mirage"></a>
 ![Mirage-2](https://img.curvio.org/blog/img/no_important/202406211928658.png)
 
 
-### Nuke <a id = "nuke"></a>
+#### Nuke <a id = "nuke"></a>
 ![Nuke-2](https://img.curvio.org/blog/img/no_important/202406211928307.png)
 
 
-### Overpass <a id = "overpass"></a>
+#### Overpass <a id = "overpass"></a>
 ![Overpass-2](https://img.curvio.org/blog/img/no_important/202406211928359.png)
 
 
-### Vertigo <a id = "vertigo"></a>
+#### Vertigo <a id = "vertigo"></a>
 ![Vertigo-2](https://img.curvio.org/blog/img/no_important/202406211928179.png)
 
 ![Vertigo-2-down](https://img.curvio.org/blog/img/no_important/202406211928928.png)
 
 
-### Ancient <a id = "ancient"></a>
+#### Ancient <a id = "ancient"></a>
 ![Ancient-2](https://img.curvio.org/blog/img/no_important/202406211928464.png)
 
 
-### Anubis <a id = "anubis"></a>
+#### Anubis <a id = "anubis"></a>
 ![Anubis-2](https://img.curvio.org/blog/img/no_important/202406211929456.png)
 
 
-### Dust2 <a id = "dust"></a>
+#### Dust2 <a id = "dust"></a>
 ![Dust2-2](https://img.curvio.org/blog/img/no_important/202406211929333.png)

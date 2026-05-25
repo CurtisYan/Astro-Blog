@@ -792,8 +792,8 @@ body.search-open {
   }
 
   .nav-toggle[aria-expanded="true"] {
-    text-decoration: underline;
-    text-underline-offset: 0.15em;
+    text-decoration: line-through;
+    text-decoration-thickness: 0.04em;
   }
 
   .nav {

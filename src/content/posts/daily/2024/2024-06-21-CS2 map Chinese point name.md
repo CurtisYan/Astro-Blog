@@ -9,7 +9,7 @@ thumbnail: false
 cover: "https://img.curvio.org/blog/img/no_important/202406211934220.png" # 文章页头图
 date: 2024-06-21
 ---
-# CS2最新全图报点，细节超全！
+###  CS2最新全图报点
 
 学习CS2的报点跟练习瞄准一样重要。既然你每天都玩这些地图，所以学起来应该更简单。
 
@@ -27,33 +27,33 @@ date: 2024-06-21
 
 
 
-### 炼狱小镇 <a id = "inferno"></a>
+#### 炼狱小镇 <a id = "inferno"></a>
 ![Inferno-2](https://img.curvio.org/blog/img/no_important/202406211936340.png)
 
 
-### 荒漠迷城 <a id = "mirage"></a>
+#### 荒漠迷城 <a id = "mirage"></a>
 ![Mirage-2](https://img.curvio.org/blog/img/no_important/202406211936326.png)
 
 
-### 核子危机 <a id = "nuke"></a>
+#### 核子危机 <a id = "nuke"></a>
 ![Nuke-2](https://img.curvio.org/blog/img/no_important/202406211936823.png)
 
 
-### 死亡游乐园 <a id = "overpass"></a>
+#### 死亡游乐园 <a id = "overpass"></a>
 ![Overpass-2](https://img.curvio.org/blog/img/no_important/202406211936674.png)
 
 
-### 殒命大厦 <a id = "vertigo"></a>
+#### 殒命大厦 <a id = "vertigo"></a>
 ![Vertigo-2](https://img.curvio.org/blog/img/no_important/202406211938304.png)
 
 
-### 远古遗迹 <a id = "ancient"></a>
+#### 远古遗迹 <a id = "ancient"></a>
 ![Ancient-2](https://img.curvio.org/blog/img/no_important/202406211938548.png)
 
 
-### 阿努比斯 <a id = "anubis"></a>
+#### 阿努比斯 <a id = "anubis"></a>
 ![Anubis-2](https://img.curvio.org/blog/img/no_important/202406211938500.png)
 
 
-### 炙热沙城Ⅱ <a id = "dust"></a>
+#### 炙热沙城Ⅱ <a id = "dust"></a>
 ![Dust2-2](https://img.curvio.org/blog/img/no_important/202406211938836.png)

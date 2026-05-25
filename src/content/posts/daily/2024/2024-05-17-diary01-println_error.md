@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2024.5.17有感而发-关于println报错的解决
+title: 有感而发-关于println报错的解决
 category: 学习笔记
 tags: 报错
 keywords:

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2024.10.22交易员日记01-关于BTC的预测
+title: 交易员日记01-关于BTC的预测
 category: 学习笔记
 tags: BTC, 币圈
 keywords: BTC, 币圈
