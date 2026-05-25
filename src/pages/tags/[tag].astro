@@ -17,5 +17,9 @@ const posts = (await loadPosts()).filter((post) =>
 );
 ---
 <SiteLayout title={`标签：${tagName}`}>
-  <PostArchive title={`#${tagName}`} posts={posts} />
+  <PostArchive title={`#${tagName}`} posts={posts}>
+    <nav class="archive-actions" aria-label="Tag navigation">
+      <a class="profile-link" href="/tags/">全部标签</a>
+    </nav>
+  </PostArchive>
 </SiteLayout>

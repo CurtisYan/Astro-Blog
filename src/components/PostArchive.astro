@@ -14,7 +14,7 @@ const { title, posts, section } = Astro.props;
 const groupedPosts = groupPostsByYear(posts);
 ---
 <main class="stack">
-  <header class="archive-header" data-archive-title={section ? 'section' : 'config'} data-section={section}>
+  <header class="archive-header" data-archive-title={section ? 'section' : undefined} data-section={section}>
     <h2>{title}</h2>
   </header>
   <div class="archive-years">
@@ -32,4 +32,5 @@ const groupedPosts = groupPostsByYear(posts);
       </section>
     ))}
   </div>
+  <slot />
 </main>

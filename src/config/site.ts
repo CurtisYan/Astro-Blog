@@ -7,7 +7,6 @@ export const siteConfig = {
   nav: [
     { label: '生活', href: '/life/' },
     { label: '技术', href: '/tech/' },
-    { label: '标签', href: '/tags/' },
     { label: '关于', href: '/about/' }
   ],
   sections: {

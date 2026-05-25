@@ -1,0 +1,131 @@
+---
+import { getPostHref, getPostTags, loadPosts, normalizeTags } from '../lib/posts';
+
+const posts = await loadPosts();
+const searchItems = posts.map((post) => ({
+  title: post.data.title || post.id,
+  href: getPostHref(post),
+  excerpt: post.data.excerpt || '',
+  content: (post as { body?: string }).body || '',
+  tags: getPostTags(post),
+  keywords: normalizeTags(post.data.keywords)
+}));
+const searchJson = JSON.stringify(searchItems).replace(/</g, '\\u003c');
+---
+<div class="search-overlay" data-search-overlay hidden>
+  <div class="search-backdrop" data-search-close></div>
+  <section class="search-panel" role="dialog" aria-modal="true" aria-label="Search">
+    <input class="search-input" data-search-query type="search" autocomplete="off" spellcheck="false" placeholder="Search">
+    <div class="search-results" data-search-results></div>
+  </section>
+</div>
+
+<script type="application/json" id="search-index" set:html={searchJson} />
+<script>
+(() => {
+  const overlay = document.querySelector("[data-search-overlay]");
+  const input = document.querySelector("[data-search-query]");
+  const results = document.querySelector("[data-search-results]");
+  const dataNode = document.getElementById("search-index");
+
+  if (!overlay || !input || !results || !dataNode) return;
+
+  const items = JSON.parse(dataNode.textContent || "[]");
+  let lastActive = null;
+
+  function searchableText(item) {
+    return [
+      item.title,
+      item.excerpt,
+      item.content,
+      ...(item.tags || []),
+      ...(item.keywords || [])
+    ].join(" ").toLowerCase();
+  }
+
+  function render(query) {
+    const term = query.trim().toLowerCase();
+    results.innerHTML = "";
+
+    if (!term) return;
+
+    const matches = items
+      .filter((item) => searchableText(item).includes(term))
+      .slice(0, 8);
+
+    if (!matches.length) {
+      const empty = document.createElement("p");
+      empty.className = "search-empty";
+      empty.textContent = "No results";
+      results.appendChild(empty);
+      return;
+    }
+
+    for (const item of matches) {
+      const link = document.createElement("a");
+      link.className = "search-result";
+      link.href = item.href;
+
+      const title = document.createElement("span");
+      title.className = "search-result-title";
+      title.textContent = item.title;
+      link.appendChild(title);
+
+      const tags = [...(item.tags || []), ...(item.keywords || [])].slice(0, 5);
+      if (tags.length) {
+        const meta = document.createElement("span");
+        meta.className = "search-result-meta";
+        meta.textContent = tags.map((tag) => `#${tag}`).join(" ");
+        link.appendChild(meta);
+      }
+
+      results.appendChild(link);
+    }
+  }
+
+  function openSearch() {
+    lastActive = document.activeElement;
+    overlay.hidden = false;
+    document.body.classList.add("search-open");
+    input.focus();
+    input.select();
+    render(input.value);
+  }
+
+  function closeSearch() {
+    overlay.hidden = true;
+    document.body.classList.remove("search-open");
+    input.value = "";
+    results.innerHTML = "";
+    if (lastActive && typeof lastActive.focus === "function") {
+      lastActive.focus();
+    }
+  }
+
+  function isTypingTarget(target) {
+    return target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement ||
+      target?.isContentEditable;
+  }
+
+  document.addEventListener("keydown", (event) => {
+    const key = event.key.toLowerCase();
+    const commandSearch = (event.metaKey || event.ctrlKey) && key === "k";
+    const slashSearch = key === "/" && !isTypingTarget(event.target);
+
+    if (commandSearch || slashSearch) {
+      event.preventDefault();
+      openSearch();
+      return;
+    }
+
+    if (key === "escape" && !overlay.hidden) {
+      closeSearch();
+    }
+  });
+
+  input.addEventListener("input", () => render(input.value));
+  overlay.querySelector("[data-search-close]")?.addEventListener("click", closeSearch);
+})();
+</script>
