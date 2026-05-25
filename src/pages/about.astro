@@ -1,0 +1,19 @@
+---
+import { getEntry, render } from 'astro:content';
+import SiteLayout from '../components/SiteLayout.astro';
+import { siteConfig } from '../config/site';
+
+const page = await getEntry('pages', siteConfig.content.aboutPage);
+
+if (!page || page.data.draft) {
+  throw new Error(`Page not found: ${siteConfig.content.aboutPage}`);
+}
+
+const { Content } = await render(page);
+---
+<SiteLayout title={page.data.title} description={page.data.description}>
+  <main class="article">
+    <h1>{page.data.title}</h1>
+    <Content />
+  </main>
+</SiteLayout>

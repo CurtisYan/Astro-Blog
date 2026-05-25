@@ -1,9 +1,11 @@
 import { getCollection } from 'astro:content';
+import { siteConfig, type SiteSection } from '../config/site';
 
-const sectionByDir = {
-  daily: 'life',
-  tech: 'tech'
-};
+const sectionByDir = Object.fromEntries(
+  Object.entries(siteConfig.sections).flatMap(([section, config]) =>
+    config.dirs.map((dir) => [dir, section])
+  )
+) as Record<string, SiteSection>;
 
 function pad(value: string | number) {
   return String(value).padStart(2, '0');
@@ -68,7 +70,7 @@ export function formatYear(date: Date | null) {
 export function getPostSection(post: { id?: string; slug?: string }) {
   const id = getPostId(post);
   const topLevel = id.split('/')[0];
-  return sectionByDir[topLevel as keyof typeof sectionByDir] || 'tech';
+  return sectionByDir[topLevel] || 'tech';
 }
 
 export function getPostHref(post: { id?: string; slug?: string }) {
@@ -115,6 +117,6 @@ export function groupPostsByYear(posts: Array<{ _date: Date | null }>) {
   return numericYears.map((year) => ({ year, posts: groups.get(year) || [] }));
 }
 
-export function filterPostsBySection(posts: Array<{ id?: string; slug?: string; data?: { section?: string } }>, section: 'life' | 'tech') {
+export function filterPostsBySection(posts: Array<{ id?: string; slug?: string; data?: { section?: string } }>, section: SiteSection) {
   return posts.filter((post) => getPostSection(post) === section);
 }

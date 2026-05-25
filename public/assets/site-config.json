@@ -5,7 +5,7 @@
   "nav": [
     { "label": "生活", "href": "/life/" },
     { "label": "技术", "href": "/tech/" },
-    { "label": "关于", "href": "/page/about.html" }
+    { "label": "关于", "href": "/about/" }
   ],
   "sections": {
     "life": {
@@ -25,5 +25,5 @@
   "archiveSubtitle": "",
   "footerTextHtml": "© 2026 <a href=\"https://blog.curvio.org\">Curtis's Blog</a>",
   "footerCreditHtml": "Theme by <a href=\"https://andersnoren.se\">Anders Norén</a>",
-  "aboutSource": "assets/_pages/about.md"
+  "aboutSource": "src/content/pages/about.md"
 }

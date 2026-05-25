@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatMonthDay, getPostHref, groupPostsByYear } from '../lib/posts';
+
+type PostWithDate = CollectionEntry<'posts'> & { _date: Date | null };
+
+type Props = {
+  title: string;
+  posts: PostWithDate[];
+  section?: string;
+};
+
+const { title, posts, section } = Astro.props;
+const groupedPosts = groupPostsByYear(posts);
+---
+<main class="stack">
+  <header class="archive-header" data-archive-title={section ? 'section' : 'config'} data-section={section}>
+    <h2>{title}</h2>
+  </header>
+  <div class="archive-years">
+    {groupedPosts.map((group) => (
+      <section class="year-item">
+        <h3 class="year-header">{group.year}</h3>
+        <ul class="year-posts">
+          {group.posts.map((post) => (
+            <li class="year-post">
+              <span class="year-date">{formatMonthDay(post._date)}</span>
+              <a class="year-link" href={getPostHref(post)}>{post.data.title || post.id}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</main>

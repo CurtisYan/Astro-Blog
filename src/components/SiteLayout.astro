@@ -1,0 +1,33 @@
+---
+import { siteConfig } from '../config/site';
+import SiteFooter from './SiteFooter.astro';
+import SiteHeader from './SiteHeader.astro';
+
+type Props = {
+  title?: string;
+  description?: string;
+  showTagline?: boolean;
+};
+
+const { title, description = siteConfig.description, showTagline = false } = Astro.props;
+const pageTitle = title ? `${title} | ${siteConfig.title}` : siteConfig.title;
+---
+<!doctype html>
+<html lang={siteConfig.lang}>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{pageTitle}</title>
+    {description ? <meta name="description" content={description}> : null}
+    <link rel="stylesheet" href="/assets/site.css">
+  </head>
+  <body>
+    <div class="site-shell">
+      <SiteHeader showTagline={showTagline} />
+      <slot />
+      <SiteFooter />
+    </div>
+
+    <script src="/assets/site.js?v=20260520b" defer></script>
+  </body>
+</html>

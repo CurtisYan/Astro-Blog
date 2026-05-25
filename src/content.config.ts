@@ -19,4 +19,18 @@ const posts = defineCollection({
   })
 });
 
-export const collections = { posts };
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    date: z.preprocess((value) => {
+      if (value instanceof Date) return value.toISOString();
+      if (typeof value === 'string') return value;
+      return value;
+    }, z.string().optional()),
+    draft: z.boolean().optional()
+  })
+});
+
+export const collections = { posts, pages };

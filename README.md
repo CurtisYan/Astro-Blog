@@ -11,11 +11,11 @@ A minimal Astro project with a static blog migrated into public/.
 ## Copy This Template
 
 1. Copy this repo.
-2. Replace content under public/ (HTML, assets, posts).
-3. Edit public/assets/site-config.json for title/nav.
-4. If you use scripts/, run npm run build-posts.
+2. Replace posts under src/content/posts/.
+3. Edit src/config/site.ts for title, nav, sections, footer, and the about page source.
+4. Edit pages such as src/content/pages/about.md for standalone Markdown pages.
 
 ## Notes
 
-- public/ holds the current static HTML site.
-- Move pages into src/pages later if you want full Astro layouts.
+- Astro pages live in src/pages/ and share src/components/SiteLayout.astro.
+- public/assets/site-config.json is kept for legacy static pages and browser-side fallback behavior.

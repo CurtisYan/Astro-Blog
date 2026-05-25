@@ -1,62 +1,12 @@
 ---
-import { formatMonthDay, getPostHref, groupPostsByYear, loadPosts, filterPostsBySection } from '../lib/posts';
+import PostArchive from '../components/PostArchive.astro';
+import SiteLayout from '../components/SiteLayout.astro';
+import { siteConfig } from '../config/site';
+import { filterPostsBySection, loadPosts } from '../lib/posts';
 
 const posts = filterPostsBySection(await loadPosts(), 'tech');
-const groupedPosts = groupPostsByYear(posts);
+const section = siteConfig.sections.tech;
 ---
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>技术 | Curtis's Blog</title>
-  <link rel="stylesheet" href="/assets/site.css">
-</head>
-<body>
-  <div class="site-shell">
-    <header class="site-header stack">
-      <div class="nav-shell">
-        <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="primary-nav">菜单</button>
-        <nav class="nav" id="primary-nav" data-primary-nav aria-label="Primary">
-          <a href="/life/">生活</a>
-          <a href="/tech/">技术</a>
-          <a href="/page/about.html">关于</a>
-        </nav>
-      </div>
-      <div class="brand">
-        <h1><a href="/">Curtis's Blog</a></h1>
-      </div>
-    </header>
-
-    <main class="stack">
-      <header class="archive-header" data-archive-title="section" data-section="tech">
-        <h2>技术</h2>
-      </header>
-      <div class="archive-years">
-        {groupedPosts.map((group) => (
-          <section class="year-item">
-            <h3 class="year-header">{group.year}</h3>
-            <ul class="year-posts">
-              {group.posts.map((post) => (
-                <li class="year-post">
-                  <span class="year-date">{formatMonthDay(post._date)}</span>
-                  <a class="year-link" href={getPostHref(post)}>{post.data.title || post.id}</a>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
-      </div>
-    </main>
-
-    <footer class="site-footer stack">
-      <div class="separator-wrap">
-        <hr class="davis-separator">
-      </div>
-      <p>© <span data-year></span> Curtis's Blog</p>
-      <p class="credits">Theme by <a href="https://andersnoren.se">Anders Norén</a></p>
-    </footer>
-  </div>
-  <script src="/assets/site.js?v=20260520b" defer></script>
-</body>
-</html>
+<SiteLayout title={section.title}>
+  <PostArchive title={section.title} posts={posts} section="tech" />
+</SiteLayout>
