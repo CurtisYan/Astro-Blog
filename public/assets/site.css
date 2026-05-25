@@ -386,6 +386,16 @@ main {
   text-indent: 2em;
 }
 
+.article h2 {
+  margin: 2.4em 0 1em;
+  font-family: "Times Now", "Times New Roman", Times, serif;
+  font-size: clamp(1.65rem, 4vw, 2.2rem);
+  font-weight: 300;
+  line-height: 1.15;
+  text-align: center;
+  opacity: 0.72;
+}
+
 .article p a {
   text-decoration: underline;
   text-decoration-thickness: 0.2px;
@@ -487,7 +497,7 @@ main {
 }
 
 .article figure {
-  margin: var(--space-50) 0;
+  margin: var(--space-70) auto;
 }
 
 .article figure.wp-block-image {
@@ -520,8 +530,18 @@ main {
 .article p > img,
 .article p img {
   max-width: min(88%, 520px);
-  margin-top: var(--space-50);
-  margin-bottom: var(--space-50);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.article p:has(> img) {
+  margin: var(--space-70) auto;
+  text-indent: 0;
+}
+
+.article p:has(> img + em),
+.article p:has(> img + small) {
+  margin-bottom: var(--space-80);
 }
 
 /* Smaller screens: relax sizes */
@@ -550,26 +570,32 @@ main {
 
 .article figure.wp-block-image figcaption {
   margin-top: var(--space-20);
-  font-size: 0.88rem;
-  line-height: 1.45;
-  color: var(--primary);
-  text-align: center;
 }
 
 .article p > img + em,
 .article p > img + small {
   display: block;
   margin-top: var(--space-20);
-  color: var(--primary);
-  text-align: center;
-  font-size: 0.88rem;
 }
 
 .article figcaption {
   color: var(--primary);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
+  font-style: italic;
+  line-height: 1.45;
   text-align: center;
-  margin-top: 0.5em;
+  margin-top: var(--space-20);
+  opacity: 0.68;
+}
+
+.article p > img + em,
+.article p > img + small {
+  color: var(--primary);
+  font-size: 0.86rem;
+  font-style: italic;
+  line-height: 1.45;
+  text-align: center;
+  opacity: 0.68;
 }
 
 .archive-header,

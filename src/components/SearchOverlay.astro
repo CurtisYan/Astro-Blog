@@ -32,16 +32,49 @@ const searchJson = JSON.stringify(searchItems).replace(/</g, '\\u003c');
 
   const items = JSON.parse(dataNode.textContent || "[]");
   let lastActive = null;
+  const initialMarks = [
+    ["a", "阿"], ["b", "芭"], ["c", "擦"], ["d", "搭"], ["e", "蛾"],
+    ["f", "发"], ["g", "噶"], ["h", "哈"], ["j", "击"], ["k", "喀"],
+    ["l", "垃"], ["m", "妈"], ["n", "拿"], ["o", "哦"], ["p", "啪"],
+    ["q", "期"], ["r", "然"], ["s", "撒"], ["t", "塌"], ["w", "挖"],
+    ["x", "昔"], ["y", "压"], ["z", "匝"]
+  ];
 
-  function searchableText(item) {
+  function chineseInitials(value) {
+    return Array.from(String(value || ""))
+      .map((char) => {
+        if (!/[\u3400-\u9fff]/.test(char)) return char;
+
+        let initial = "";
+        for (const [letter, mark] of initialMarks) {
+          if (char.localeCompare(mark, "zh-Hans-CN") >= 0) {
+            initial = letter;
+          }
+        }
+        return initial || char;
+      })
+      .join("");
+  }
+
+  function searchableParts(item) {
     return [
       item.title,
       item.excerpt,
       item.content,
       ...(item.tags || []),
       ...(item.keywords || [])
-    ].join(" ").toLowerCase();
+    ];
   }
+
+  const index = items.map((item) => {
+    const text = searchableParts(item).join(" ");
+    const initials = chineseInitials(text);
+
+    return {
+      item,
+      text: `${text} ${initials} ${initials.replace(/\s+/g, "")}`.toLowerCase()
+    };
+  });
 
   function render(query) {
     const term = query.trim().toLowerCase();
@@ -49,8 +82,8 @@ const searchJson = JSON.stringify(searchItems).replace(/</g, '\\u003c');
 
     if (!term) return;
 
-    const matches = items
-      .filter((item) => searchableText(item).includes(term))
+    const matches = index
+      .filter((entry) => entry.text.includes(term))
       .slice(0, 8);
 
     if (!matches.length) {
@@ -61,7 +94,7 @@ const searchJson = JSON.stringify(searchItems).replace(/</g, '\\u003c');
       return;
     }
 
-    for (const item of matches) {
+    for (const { item } of matches) {
       const link = document.createElement("a");
       link.className = "search-result";
       link.href = item.href;
