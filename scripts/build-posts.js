@@ -153,7 +153,7 @@ for (const f of mdFiles){
         <nav class="nav" id="primary-nav" data-primary-nav aria-label="Primary">
           <a href="/life.html">生活</a>
           <a href="/tech.html">技术</a>
-          <a href="/page/about.html">关于</a>
+          <a href="/about/">关于</a>
         </nav>
       </div>
       <div class="brand">

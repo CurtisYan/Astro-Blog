@@ -4,7 +4,7 @@
   <url><loc>https://example.com/life.html</loc></url>
   <url><loc>https://example.com/tech.html</loc></url>
   <url><loc>https://example.com/archive.html</loc></url>
-  <url><loc>https://example.com/page/about.html</loc></url>
+  <url><loc>https://example.com/about/</loc></url>
   <url><loc>https://example.com/search.html</loc></url>
   <url><loc>https://example.com/posts/welcome-to-davis-static.html</loc></url>
   <url><loc>https://example.com/posts/about-fast-blog-setup.html</loc></url>
