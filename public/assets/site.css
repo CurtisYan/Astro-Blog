@@ -772,20 +772,50 @@ body.search-open {
     min-height: calc(100vh - (var(--space-40) * 2));
   }
 
+  .site-header {
+    width: 100%;
+    max-width: none;
+  }
+
+  .brand {
+    max-width: var(--content-size);
+    margin: 0 auto;
+  }
+
+  .nav-shell {
+    width: 100%;
+  }
+
   .nav-toggle {
     display: block;
     margin-bottom: var(--space-30);
   }
 
+  .nav-toggle[aria-expanded="true"] {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
   .nav {
     display: none;
-    gap: var(--space-30);
-    margin-bottom: var(--space-50);
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--space-20);
+    margin-bottom: var(--space-70);
   }
 
   .nav.is-open {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .nav a {
+    flex: 0 1 auto;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
   }
 
   .archive-header h2,
