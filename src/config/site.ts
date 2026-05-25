@@ -32,6 +32,10 @@ export const siteConfig = {
     {
       label: 'GitHub',
       href: 'https://github.com/CurtisYan'
+    },
+    {
+      label: 'Contact',
+      href: 'mailto:huochengpro@gmail.com'
     }
   ],
   footer: {
