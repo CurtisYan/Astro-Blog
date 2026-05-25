@@ -78,6 +78,71 @@ export function getPostHref(post: { id?: string; slug?: string }) {
   return id ? `/posts/${id}/` : '/posts/';
 }
 
+export function slugifyTag(tag: string) {
+  return tag
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[\\/]+/g, '-');
+}
+
+export function normalizeTags(value: unknown) {
+  if (!value) return [];
+
+  const values = Array.isArray(value)
+    ? value
+    : String(value)
+        .split(/[,;，；]/)
+        .flatMap((item) => {
+          const trimmed = item.trim();
+          if (/^[\w-]+ [\w-]+$/i.test(trimmed)) {
+            return trimmed.split(/\s+/);
+          }
+          return [trimmed];
+        });
+
+  const seen = new Set<string>();
+  const tags: string[] = [];
+
+  for (const item of values) {
+    const tag = String(item || '').trim();
+    const key = tag.toLowerCase();
+    if (!tag || seen.has(key)) continue;
+    seen.add(key);
+    tags.push(tag);
+  }
+
+  return tags;
+}
+
+export function getPostTags(post: { data?: { tags?: unknown } }) {
+  return normalizeTags(post.data?.tags);
+}
+
+export function getTagHref(tag: string) {
+  return `/tags/${slugifyTag(tag)}/`;
+}
+
+export function getAllTags(posts: Array<{ data?: { tags?: unknown } }>) {
+  const tagMap = new Map<string, { name: string; slug: string; count: number }>();
+
+  for (const post of posts) {
+    for (const tag of getPostTags(post)) {
+      const slug = slugifyTag(tag);
+      const existing = tagMap.get(slug);
+      if (existing) {
+        existing.count += 1;
+      } else {
+        tagMap.set(slug, { name: tag, slug, count: 1 });
+      }
+    }
+  }
+
+  return Array.from(tagMap.values()).sort((left, right) =>
+    left.name.localeCompare(right.name, 'zh-CN')
+  );
+}
+
 export async function loadPosts() {
   const posts = await getCollection('posts');
   return posts

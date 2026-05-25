@@ -83,6 +83,7 @@ body {
   font-size: clamp(16px, 1.3vw, 18px);
   line-height: 1.5;
   padding: var(--space-50);
+  min-height: 100vh;
   text-rendering: optimizeLegibility;
 }
 
@@ -104,7 +105,10 @@ img {
 }
 
 .site-shell {
+  display: flex;
+  flex-direction: column;
   max-width: var(--wide-size);
+  min-height: calc(100vh - (var(--space-50) * 2));
   margin: 0 auto;
 }
 
@@ -346,7 +350,9 @@ main .davis-separator {
 }
 
 main {
+  flex: 1 0 auto;
   margin: 0;
+  padding-bottom: var(--space-80);
 }
 
 .article {
@@ -376,6 +382,10 @@ main {
   opacity: 0.9;
 }
 
+.article > p:first-of-type {
+  text-indent: 2em;
+}
+
 .article p a {
   text-decoration: underline;
   text-decoration-thickness: 0.2px;
@@ -391,7 +401,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-20);
-  margin: var(--space-50) 0 0;
+  margin: var(--space-70) 0 var(--space-60);
 }
 
 .profile-link {
@@ -410,6 +420,54 @@ main {
   border-color: var(--foreground);
   color: var(--primary);
   text-decoration: underline;
+}
+
+.post-tags,
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75em 1em;
+}
+
+.post-tags {
+  margin: var(--space-80) auto 0;
+  color: var(--primary);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.article .post-tags {
+  text-indent: 0;
+}
+
+.post-tags a,
+.tag-cloud a {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.post-tags a:hover,
+.post-tags a:focus,
+.tag-cloud a:hover,
+.tag-cloud a:focus {
+  color: var(--foreground);
+}
+
+.tag-cloud {
+  margin: var(--space-50) auto 0;
+  max-width: var(--content-size);
+}
+
+.tag-cloud a {
+  border-bottom: 1px solid var(--secondary);
+  padding-bottom: 0.15em;
+}
+
+.tag-cloud span {
+  margin-left: 0.3em;
+  color: var(--primary);
+  font-size: 0.85em;
 }
 
 .article h3 {
@@ -563,7 +621,8 @@ main {
 }
 
 .site-footer {
-  padding: 0 0 80px;
+  flex: 0 0 auto;
+  padding: var(--space-70) 0 72px;
   text-align: center;
 }
 
@@ -585,6 +644,10 @@ main {
 @media (max-width: 768px) {
   body {
     padding: var(--space-40);
+  }
+
+  .site-shell {
+    min-height: calc(100vh - (var(--space-40) * 2));
   }
 
   .nav-toggle {

@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import { getEntry, render } from 'astro:content';
 import SiteLayout from '../../components/SiteLayout.astro';
-import { formatMonthDay, getPostDate } from '../../lib/posts';
+import { formatMonthDay, getPostDate, getPostTags, getTagHref } from '../../lib/posts';
 
 export async function getStaticPaths() {
   const posts = (await getCollection('posts')).filter((post) => !post.data.draft);
@@ -24,11 +24,19 @@ const post = await getEntry('posts', slugParam);
 if (!post) throw new Error(`Post not found: ${slugParam}`);
 const { Content } = await render(post);
 const publishedDate = getPostDate(post);
+const tags = getPostTags(post);
 ---
 <SiteLayout title={post.data.title}>
   <main class="article">
     <h1>{post.data.title}</h1>
     <p class="post-meta">{formatMonthDay(publishedDate) || post.data.date || ''}</p>
     <Content />
+    {tags.length ? (
+      <p class="post-tags" aria-label="Tags">
+        {tags.map((tag) => (
+          <a href={getTagHref(tag)}>#{tag}</a>
+        ))}
+      </p>
+    ) : null}
   </main>
 </SiteLayout>

@@ -1,0 +1,21 @@
+---
+import PostArchive from '../../components/PostArchive.astro';
+import SiteLayout from '../../components/SiteLayout.astro';
+import { getAllTags, getPostTags, loadPosts } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await loadPosts();
+  return getAllTags(posts).map((tag) => ({
+    params: { tag: tag.slug },
+    props: { tagName: tag.name }
+  }));
+}
+
+const { tagName } = Astro.props;
+const posts = (await loadPosts()).filter((post) =>
+  getPostTags(post).some((tag) => tag.toLowerCase() === tagName.toLowerCase())
+);
+---
+<SiteLayout title={`标签：${tagName}`}>
+  <PostArchive title={`#${tagName}`} posts={posts} />
+</SiteLayout>

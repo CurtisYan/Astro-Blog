@@ -11,6 +11,8 @@ const posts = defineCollection({
       return value;
     }, z.string().optional()),
     tags: z.any().optional(),
+    keywords: z.any().optional(),
+    thumbnail: z.any().optional(),
     excerpt: z.preprocess((value) => {
       if (value === false) return undefined;
       return value;

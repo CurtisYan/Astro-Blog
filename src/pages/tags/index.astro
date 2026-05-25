@@ -1,0 +1,18 @@
+---
+import SiteLayout from '../../components/SiteLayout.astro';
+import { getAllTags, loadPosts } from '../../lib/posts';
+
+const tags = getAllTags(await loadPosts());
+---
+<SiteLayout title="标签">
+  <main class="stack">
+    <header class="archive-header">
+      <h2>标签</h2>
+    </header>
+    <nav class="tag-cloud" aria-label="Tags">
+      {tags.map((tag) => (
+        <a href={`/tags/${tag.slug}/`}>#{tag.name}<span>{tag.count}</span></a>
+      ))}
+    </nav>
+  </main>
+</SiteLayout>
