@@ -386,6 +386,32 @@ main {
   color: var(--link-hover);
 }
 
+.profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-20);
+  margin: var(--space-50) 0 0;
+}
+
+.profile-link {
+  min-width: 148px;
+  padding: 0.65em 1.1em;
+  border: 1px solid var(--secondary);
+  color: var(--foreground);
+  font-size: 0.95rem;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+}
+
+.profile-link:hover,
+.profile-link:focus {
+  border-color: var(--foreground);
+  color: var(--primary);
+  text-decoration: underline;
+}
+
 .article h3 {
   margin: 1.5em 0 1em;
   font-family: 'Times New Roman', Times, serif;

@@ -24,6 +24,16 @@ export const siteConfig = {
   content: {
     aboutPage: 'about'
   },
+  profileLinks: [
+    {
+      label: 'Buy me a coffee',
+      href: 'https://buymeacoffee.com/curtisyan'
+    },
+    {
+      label: 'GitHub',
+      href: 'https://github.com/CurtisYan'
+    }
+  ],
   footer: {
     credit: {
       label: 'Theme by Anders Norén',

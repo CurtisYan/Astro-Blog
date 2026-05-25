@@ -15,5 +15,12 @@ const { Content } = await render(page);
   <main class="article">
     <h1>{page.data.title}</h1>
     <Content />
+    {siteConfig.profileLinks.length ? (
+      <nav class="profile-links" aria-label="Profile links">
+        {siteConfig.profileLinks.map((link) => (
+          <a class="profile-link" href={link.href}>{link.label}</a>
+        ))}
+      </nav>
+    ) : null}
   </main>
 </SiteLayout>
